@@ -1,17 +1,34 @@
-import type { GameState, Settings, Status, Turn } from "./types";
+import { Base, Status, type GameState, type Settings, type Turn } from "./types";
 
 export function getGameState(): GameState {
-  throw new Error("Not implemented");
+  return {
+    secret: '',
+    history: [],
+    settings: {
+      base: Base.DEC,
+    },
+    status: Status.PROGRESS,
+    time: 0,
+  };
 }
 
 export function addTurn(state: GameState, turn: Turn): GameState {
-    throw new Error('Not implemented');
+    return {
+      ...state,
+      history: [...state.history, turn],
+    };
 }
 
 export function updateSettings(state: GameState, settings: Settings): GameState {
-    throw new Error('Not implemented');
+    return {
+      ...state,
+      settings: { ...settings },
+    };
 }
 
 export function updateStatus(state: GameState, status: Status): GameState {
-    throw new Error('Not implemented');
+    return {
+      ...state,
+      status: status,
+    };
 }

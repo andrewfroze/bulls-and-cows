@@ -94,8 +94,8 @@ describe('evaluateGuess', () => {
     });
 
     expect(evaluateGuess('1a2b', '1B2A')).toEqual({
-      bulls: [0],
-      cows: [1, 2, 3],
+      bulls: [0, 2],
+      cows: [1, 3],
     });
   });
 

@@ -17,8 +17,8 @@ export enum Base {
 };
 
 export enum Status {
-  PROGRESS = 0,
-  FINISHED = 1
+  PROGRESS = 'progress',
+  FINISHED = 'finished'
 }
 
 export interface GameState {

@@ -3,15 +3,16 @@
     "target": "esnext",
     "module": "esnext",
     "moduleResolution": "bundler",
-    "types": ["node"],
+    "types": ["node", "jest"],
     "sourceMap": true,
-    "rootDir": "./src",
+    "rootDir": ".",
     "outDir": ".dist",
 
     "strict": true,
     "noImplicitAny": true,
-    "verbatimModuleSyntax": true,
-    "skipLibCheck": true
+    "verbatimModuleSyntax": false,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
   },
-  "include": ["src"]
+  "include": ["src", "tests"]
 }

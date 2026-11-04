@@ -1,5 +1,7 @@
-import type { Base } from "./types";
+import { BaseConfig } from "./base";
+import type { Base, BaseObject } from "./types";
 
 export function createDigitValidator(base: Base): (value: string) => boolean {
-  throw new Error("Not implemented");
+  const baseConfig: BaseObject = BaseConfig[base];
+  return (char) => baseConfig.availableChars.includes(char.toLowerCase());
 }

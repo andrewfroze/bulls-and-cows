@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
-import { isValidGuess } from '../../src/game/isValidGuess';
-import { Base } from '../../src/game/types';
+import { isValidGuess } from '../../src/game';
+import { Base } from '../../src/game';
 
 describe('isValidGuess', () => {
   test("Для guess='1234', length=4, base=DEC функция возвращает true", () => {

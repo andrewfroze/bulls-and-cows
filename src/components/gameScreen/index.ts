@@ -1,4 +1,4 @@
-import { Base } from '../../game/types';
+import { Base } from '../../game';
 import { renderHeader } from './header.module';
 import { renderMain } from './main.module';
 import { renderFooter } from './footer.module';

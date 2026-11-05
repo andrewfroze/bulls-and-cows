@@ -1,6 +1,6 @@
 import { describe, test } from '@jest/globals';
-import { countPossibleSecrets } from '../../src/game/countPossibleSecrets';
-import { Base } from '../../src/game/types';
+import { countPossibleSecrets } from '../../src/game';
+import { Base } from '../../src/game';
 
 describe('countPossibleSecrets', () => {
   test('При length=1 и base=BIN функция возвращает 2', () => {

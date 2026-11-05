@@ -1,5 +1,5 @@
 import { describe, expect, test } from '@jest/globals';
-import { evaluateGuess } from '../../src/game/evaluateGuess';
+import { evaluateGuess } from '../../src/game';
 
 describe('evaluateGuess', () => {
   test("При secret='1234' и guess='1234' функция возвращает { bulls: 4, cows: 0 }", () => {

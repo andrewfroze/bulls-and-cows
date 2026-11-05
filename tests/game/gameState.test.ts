@@ -1,7 +1,7 @@
 import { describe, expect, test } from '@jest/globals';
-import { addTurn, updateSettings, updateStatus } from '../../src/game/gameState';
-import { Base } from '../../src/game/types';
-import type { GameState, Turn, Settings, Status } from '../../src/game/types';
+import { addTurn, updateSettings, updateStatus } from '../../src/game';
+import { Base } from '../../src/game';
+import type { GameState, Turn, Settings, Status } from '../../src/game';
 
 describe('Game state immutability', () => {
   const initialState: GameState = {
@@ -17,6 +17,7 @@ describe('Game state immutability', () => {
     ],
     settings: {
       base: Base.DEC,
+      length: 4,
     },
     status: 'progress' as Status,
     time: 0,
@@ -60,6 +61,7 @@ describe('Game state immutability', () => {
   test('Обновление настроек создаёт новый объект состояния', () => {
     const newSettings: Settings = {
       base: Base.HEX,
+      length: 4,
     };
 
     const newState = updateSettings(initialState, newSettings);
@@ -82,7 +84,7 @@ describe('Game state immutability', () => {
     const originalState = structuredClone(initialState);
 
     addTurn(initialState, newTurn);
-    updateSettings(initialState, { base: Base.HEX });
+    updateSettings(initialState, { base: Base.HEX, length: 4 });
     updateStatus(initialState, 'finished' as Status);
 
     expect(initialState).toEqual(originalState);

@@ -1,9 +1,9 @@
 import { createElement } from '../utils/elementFactory';
-import { Base, BaseObject } from '../../game/types';
+import { Base, BaseObject } from '../../game';
 import styles from './gameScreen.module.css';
-import { BaseConfig } from '../../game/base';
-import { createDigitValidator } from '../../game/createDigitValidator';
-import { isValidGuess } from '../../game/isValidGuess';
+import { BaseConfig } from '../../game';
+import { createDigitValidator } from '../../game';
+import { isValidGuess } from '../../game';
 
 interface MainOptions {
   base: Base;

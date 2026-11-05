@@ -1,5 +1,5 @@
-import { BaseConfig } from './base';
-import type { Base, BaseObject } from './types';
+import { BaseConfig } from './base.module';
+import type { Base, BaseObject } from './types.module';
 
 export function generateSecret(
   length: number,

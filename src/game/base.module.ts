@@ -1,4 +1,4 @@
-import { Base, type BaseObject } from './types';
+import { Base, type BaseObject } from './types.module';
 
 export const defaultBase = Base.DEC;
 

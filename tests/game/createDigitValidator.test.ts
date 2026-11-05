@@ -1,6 +1,6 @@
 import { describe, test } from '@jest/globals';
-import { createDigitValidator } from '../../src/game/createDigitValidator';
-import { Base } from '../../src/game/types';
+import { createDigitValidator } from '../../src/game';
+import { Base } from '../../src/game';
 
 describe('createDigitValidator', () => {
   test('Функция возвращает функцию-предикат', () => {

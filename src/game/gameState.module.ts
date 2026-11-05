@@ -1,15 +1,22 @@
-import { Base, Status, type GameState, type Settings, type Turn } from './types';
+import { Base, Status, type GameState, type Settings, type Turn } from './types.module';
 
-export function getGameState(): GameState {
+export function getGameState(
+  settings: Settings = { base: Base.DEC, length: 4 }
+): GameState {
   return {
     secret: '',
     history: [],
-    settings: {
-      base: Base.DEC,
-    },
+    settings: {...settings},
     status: Status.PROGRESS,
     time: 0,
   };
+}
+
+export function updateSecret(state: GameState, secret: string): GameState {
+    return {
+        ...state,
+        secret,
+    };
 }
 
 export function addTurn(state: GameState, turn: Turn): GameState {
@@ -31,4 +38,11 @@ export function updateStatus(state: GameState, status: Status): GameState {
     ...state,
     status: status,
   };
+}
+
+export function updateTime(state: GameState, time: number): GameState {
+    return {
+        ...state,
+        time,
+    };
 }

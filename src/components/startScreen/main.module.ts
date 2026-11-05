@@ -1,6 +1,6 @@
 import { createElement } from '../utils/elementFactory';
-import { BaseConfig, defaultBase } from '../../game/base';
-import { Base } from '../../game/types';
+import { BaseConfig, defaultBase } from '../../game';
+import { Base } from '../../game';
 import styles from './startScreen.module.css';
 
 const baseDropdown: HTMLSelectElement = createBaseDropdown();

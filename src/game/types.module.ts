@@ -36,4 +36,5 @@ export interface Turn {
 
 export interface Settings {
   base: Base;
+  length: number;
 }

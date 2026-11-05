@@ -1,6 +1,6 @@
 import { describe, expect, test } from '@jest/globals';
-import { generateSecret } from '../../src/game/generateSecret';
-import { Base } from '../../src/game/types';
+import { generateSecret } from '../../src/game';
+import { Base } from '../../src/game';
 
 describe('generateSecret', () => {
   test("При передаче параметров (length=2, base=BIN, random=0) функция возвращает '01'", () => {

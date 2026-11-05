@@ -1,13 +1,15 @@
 import { createElement } from '../utils/elementFactory';
-import { GameAttempt } from '.';
 import styles from './gameScreen.module.css';
+import { Turn } from '../../game';
+
+let historyList: HTMLElement;
 
 export function renderFooter(): HTMLElement {
   const title = createElement('h2', {
     textContent: 'ATTEMPT HISTORY',
   });
 
-  const historyList = createElement('div', {
+  historyList = createElement('div', {
     className: styles['attempt-history__list'],
   });
 
@@ -27,25 +29,25 @@ export function renderFooter(): HTMLElement {
   );
 }
 
-function createAttemptRow(attempt: GameAttempt, index: number): HTMLElement {
+function createAttemptRow(turn: Turn, index: number): HTMLElement {
   const number = createElement('span', {
     className: styles['attempt-number'],
-    textContent: `#${index}`,
+    textContent: `#${index + 1}`,
   });
 
   const guess = createElement('span', {
     className: styles['attempt-guess'],
-    textContent: attempt.guess,
+    textContent: turn.guess,
   });
 
   const bulls = createElement('span', {
     className: styles['attempt-bulls'],
-    textContent: `Bulls: ${attempt.bulls}`,
+    textContent: `Bulls: ${turn.result.bulls}`,
   });
 
   const cows = createElement('span', {
     className: styles['attempt-cows'],
-    textContent: `Cows: ${attempt.cows}`,
+    textContent: `Cows: ${turn.result.cows}`,
   });
 
   return createElement(
@@ -54,5 +56,13 @@ function createAttemptRow(attempt: GameAttempt, index: number): HTMLElement {
       className: styles['attempt-row'],
     },
     [number, guess, bulls, cows],
+  );
+}
+
+export function updateHistory(turns: Turn[]): void {
+  console.log(turns);
+  // todo optimize
+  historyList.replaceChildren(
+    ...turns.map((turn, index) => createAttemptRow(turn, index)).reverse()
   );
 }

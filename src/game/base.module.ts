@@ -1,6 +1,7 @@
 import { Base, type BaseObject } from './types.module';
 
-export const defaultBase = Base.DEC;
+export const defaultBase: Base = Base.DEC;
+export const defaultLength: number = 4;
 
 export const BaseConfig: Record<Base, BaseObject> = {
   [Base.BIN]: {

@@ -102,6 +102,7 @@ export function renderMain(options: MainOptions): HTMLElement {
       input.setCustomValidity('');
     }
 
+    options.onSubmitGuess(guess);
     input.value = '';
     input.focus();
   });

@@ -1,6 +1,8 @@
 import {
     generateSecret,
     getGameState,
+    evaluateGuess,
+    updateSecret,
     addTurn,
     updateStatus,
     updateTime,
@@ -9,67 +11,59 @@ import {
     type Settings,
     type Turn,
 } from '../../game';
+import { EvaluationResult } from '../../game/types.module';
 
 export class GameController {
-    private state: GameState = getGameState();
+  private state: GameState = getGameState();
 
-    private timerId: ReturnType<typeof setInterval> | null = null;
+  public constructor(
+    private readonly onStateChange: (state: GameState) => void,
+  ) {}
 
-    constructor(
-        private readonly onTimeChange: (time: number) => void,
-    ) {}
+  public startGame(settings: Settings): void {
+    this.state = getGameState(settings);
 
-    getState(): GameState {
-        return this.state;
+    const secret = generateSecret(
+      settings.length,
+      settings.base,
+    );
+
+    this.state = updateSecret(this.state, secret);
+
+    this.notify();
+  }
+
+  public makeGuess(guess: string): Turn {
+    if (this.state.status !== Status.PROGRESS) {
+      throw new Error('Game is not in progress');
     }
 
-    startGame(settings: Settings): GameState {
-        this.stopTimer();
+    console.log(this.state.secret);
+    const result: EvaluationResult = evaluateGuess(this.state.secret, guess);
+    console.log(result);
+    const turn: Turn = { guess, result };
 
-        const secret = generateSecret(settings.length, settings.base);
+    this.state = addTurn(this.state, turn);
 
-        this.state = {
-            ...getGameState(settings),
-            secret,
-            status: Status.PROGRESS,
-        };
-
-        this.startTimer();
-
-        return this.state;
+    if (result.bulls === this.state.settings.length) {
+      this.state = updateStatus(this.state, Status.FINISHED);
     }
 
-    addTurn(turn: Turn): GameState {
-        this.state = addTurn(this.state, turn);
+    this.notify();
 
-        return this.state;
-    }
+    return turn;
+  }
 
-    finishGame(): GameState {
-        this.state = updateStatus(this.state, Status.FINISHED);
+  public updateGameTime(time: number): void {
+    this.state = updateTime(this.state, time);
+    this.notify();
+  }
 
-        this.stopTimer();
+  public getState(): GameState {
+    return this.state;
+  }
 
-        return this.state;
-    }
-
-    private startTimer(): void {
-        this.timerId = setInterval(() => {
-            if (this.state.status !== Status.PROGRESS) {
-                this.stopTimer();
-                return;
-            }
-
-            this.state = updateTime(this.state, this.state.time + 1);
-
-            this.onTimeChange(this.state.time);
-        }, 1000);
-    }
-
-    private stopTimer(): void {
-        if (this.timerId !== null) {
-            clearInterval(this.timerId);
-            this.timerId = null;
-        }
-    }
+  private notify(): void {
+    this.onStateChange(this.state);
+  }
 }

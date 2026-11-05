@@ -1,5 +1,5 @@
 import { createElement } from '../utils/elementFactory';
-import { BaseConfig, defaultBase } from '../../game';
+import { BaseConfig, defaultBase, defaultLength } from '../../game';
 import { Base } from '../../game';
 import styles from './startScreen.module.css';
 
@@ -86,6 +86,7 @@ function updateSelectLengthDropdownOptions(base: Base): void {
   });
 
   secretLengthDropdown.replaceChildren(...options);
+  secretLengthDropdown.value = String(Math.min(availableMaxLength, defaultLength));
 
   secretLengthDropdown.disabled = options.length < 2;
 }

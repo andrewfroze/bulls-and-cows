@@ -5,7 +5,7 @@ import { getGameState, updateSecret, addTurn, updateSettings, updateStatus, upda
 import { generateSecret } from './logic/generateSecret.module';
 import { isValidGuess } from './logic/isValidGuess.module';
 import { Base, type BaseObject, Status, type GameState, type Settings, type Turn } from './types.module';
-import { defaultBase, BaseConfig } from './base.module';
+import { defaultBase, BaseConfig, defaultLength } from './base.module';
 
 export {
     countPossibleSecrets,
@@ -22,6 +22,7 @@ export {
     Base,
     BaseObject,
     defaultBase,
+    defaultLength,
     BaseConfig,
     Status,
     GameState,

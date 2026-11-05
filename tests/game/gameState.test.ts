@@ -10,8 +10,8 @@ describe('Game state immutability', () => {
       {
         guess: '1256',
         result: {
-          bulls: [0, 1],
-          cows: [],
+          bulls: 2,
+          cows: 0,
         },
       },
     ],
@@ -25,8 +25,8 @@ describe('Game state immutability', () => {
   const newTurn: Turn = {
     guess: '1234',
     result: {
-      bulls: [0, 1, 2, 3],
-      cows: [],
+      bulls: 4,
+      cows: 0,
     },
   };
 

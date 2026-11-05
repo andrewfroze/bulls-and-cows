@@ -7,15 +7,15 @@ export function evaluateGuess(secret: string, guess: string): EvaluationResult {
   return guessChars.reduce(
     (result: EvaluationResult, currentChar: string, index: number) => {
       if (secretChars[index] === currentChar) {
-        result.bulls.push(index);
+        result.bulls += 1;
       } else if (secretChars.includes(currentChar)) {
-        result.cows.push(index);
+        result.cows += 1;
       }
       return result;
     },
     {
-      bulls: [],
-      cows: [],
+      bulls: 0,
+      cows: 0,
     },
   );
 }

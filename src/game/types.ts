@@ -1,6 +1,6 @@
 export interface EvaluationResult {
-  bulls: number[];
-  cows: number[];
+  bulls: number;
+  cows: number;
 }
 
 export interface BaseObject {

@@ -117,6 +117,7 @@
   font-size: 15px;
   box-shadow: 0 0 7px rgba(155, 92, 255, 0.25);
   transition: var(--transition-fast);
+  cursor: pointer;
 }
 
 .available-chars__values span:hover {

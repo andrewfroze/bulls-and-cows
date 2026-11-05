@@ -8,6 +8,7 @@ import { isValidGuess } from '../../game';
 interface MainOptions {
   base: Base;
   length: number;
+  onSubmitGuess: (guess: string) => void;
 }
 
 export function renderMain(options: MainOptions): HTMLElement {

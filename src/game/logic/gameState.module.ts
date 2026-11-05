@@ -1,4 +1,4 @@
-import { Base, Status, type GameState, type Settings, type Turn } from './types.module';
+import { Base, Status, type GameState, type Settings, type Turn } from '../types.module';
 
 export function getGameState(
   settings: Settings = { base: Base.DEC, length: 4 }

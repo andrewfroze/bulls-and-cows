@@ -1,4 +1,4 @@
-import type { EvaluationResult } from './types.module';
+import type { EvaluationResult } from '../types.module';
 
 export function evaluateGuess(secret: string, guess: string): EvaluationResult {
   const secretChars: string[] = secret.toLowerCase().split('');

@@ -14,6 +14,7 @@ export interface GameScreenOptions {
     length: number;
     onNewGame: () => void;
     onOpenLeaderboard: () => void;
+    onSubmitGuess: (guess: string) => void;
 }
 
 export function renderGameScreen(
@@ -27,6 +28,7 @@ export function renderGameScreen(
         renderMain({
             base: options.base,
             length: options.length,
+            onSubmitGuess: options.onSubmitGuess,
         }),
         renderFooter(),
     ];

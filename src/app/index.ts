@@ -12,8 +12,8 @@ function startGame(base: Base, length: number): void {
       base,
       length,
       onNewGame: start,
-      // todo open leaderboard
       onOpenLeaderboard: () => undefined,
+      onSubmitGuess: () => undefined,
     }),
   );
 }

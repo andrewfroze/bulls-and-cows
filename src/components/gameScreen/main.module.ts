@@ -80,6 +80,7 @@ export function renderMain(options: MainOptions): HTMLElement {
     'form',
     {
       className: styles['guess-form'],
+      noValidate: true,
     },
     [input, checkButton],
   );

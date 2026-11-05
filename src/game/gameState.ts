@@ -1,4 +1,4 @@
-import { Base, Status, type GameState, type Settings, type Turn } from "./types";
+import { Base, Status, type GameState, type Settings, type Turn } from './types';
 
 export function getGameState(): GameState {
   return {
@@ -13,22 +13,22 @@ export function getGameState(): GameState {
 }
 
 export function addTurn(state: GameState, turn: Turn): GameState {
-    return {
-      ...state,
-      history: [...state.history, turn],
-    };
+  return {
+    ...state,
+    history: [...state.history, turn],
+  };
 }
 
 export function updateSettings(state: GameState, settings: Settings): GameState {
-    return {
-      ...state,
-      settings: { ...settings },
-    };
+  return {
+    ...state,
+    settings: { ...settings },
+  };
 }
 
 export function updateStatus(state: GameState, status: Status): GameState {
-    return {
-      ...state,
-      status: status,
-    };
+  return {
+    ...state,
+    status: status,
+  };
 }

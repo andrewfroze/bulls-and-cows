@@ -1,11 +1,10 @@
-import { renderFooter } from "./footer";
-import { renderHeader } from "./header";
-import { renderMain } from "./main";
+import { Base } from '../../game/types';
+import { renderFooter } from './footer.module';
+import { renderHeader } from './header.module';
+import { renderMain } from './main.module';
 
-export function renderStartScreen(): HTMLElement[] {
-  return [
-    renderHeader(),
-    renderMain(),
-    renderFooter(),
-  ]
+export function renderStartScreen(
+  onStartGame: (base: Base, length: number) => void,
+): HTMLElement[] {
+  return [renderHeader(), renderMain(onStartGame), renderFooter()];
 }

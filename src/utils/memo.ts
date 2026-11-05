@@ -3,7 +3,7 @@ export function memo<Args extends unknown[], Result>(
 ): (...args: Args) => Result {
   const cache = new Map<string, Result>();
 
-  return ((...args: Args): Result => {
+  return (...args: Args): Result => {
     const key = JSON.stringify(args);
 
     if (cache.has(key)) {
@@ -14,5 +14,5 @@ export function memo<Args extends unknown[], Result>(
     cache.set(key, result);
 
     return result;
-  });
+  };
 }

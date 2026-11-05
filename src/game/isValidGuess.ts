@@ -1,5 +1,5 @@
-import { BaseConfig } from "./base";
-import type { Base, BaseObject } from "./types";
+import { BaseConfig } from './base';
+import type { Base, BaseObject } from './types';
 
 export function isValidGuess(guess: string, length: number, base: Base): boolean {
   if (guess === '') {
@@ -19,12 +19,13 @@ export function isValidGuess(guess: string, length: number, base: Base): boolean
 
   const baseConfig: BaseObject = BaseConfig[base];
 
-  const areAllCharsValid: boolean = uniqueChars.values().every((char) => baseConfig.availableChars.includes(char));
+  const areAllCharsValid: boolean = uniqueChars
+    .values()
+    .every((char) => baseConfig.availableChars.includes(char));
 
   if (!areAllCharsValid) {
     return false;
   }
-
 
   return true;
 }

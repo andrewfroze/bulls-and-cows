@@ -1,7 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+:root {
+  /* Colors */
+  --color-background: #080b2b;
+  --color-background-secondary: #111b50;
+  --color-panel: #080d30;
+
+  --color-primary: #168bff;
+  --color-secondary: #a42cff;
+  --color-accent: #ff36bd;
+  --color-highlight: #ffd52e;
+
+  --color-text: #f5f4ff;
+  --color-text-secondary: #c4caff;
+
+  --color-success: #27e88b;
+  --color-warning: #ffd52e;
+  --color-danger: #ff4545;
+
+  /* Typography */
+  --font-heading: 'Press Start 2P', monospace;
+  --font-main: 'VT323', monospace;
+
+  --font-size-small: 16px;
+  --font-size-medium: 24px;
+  --font-size-large: 32px;
+
+  /* Borders */
+  --border-width: 2px;
+  --border-radius: 6px;
+  --border-radius-large: 12px;
+
+  --border-primary: var(--border-width) solid var(--color-primary);
+  --border-secondary: var(--border-width) solid var(--color-secondary);
+
+  /* Shadows */
+  --shadow-blue: 0 0 10px rgba(22, 139, 255, 0.6);
+  --shadow-purple: 0 0 10px rgba(164, 44, 255, 0.6);
+  --shadow-pink: 0 0 10px rgba(255, 54, 189, 0.6);
+
+  /* Spacing */
+  --spacing-small: 10px;
+  --spacing-medium: 20px;
+  --spacing-large: 30px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-normal: 0.2s ease;
+}
+
+/* Global styles */
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  max-width: 1920px;
+
+  color: var(--color-text);
+  background:
+    radial-gradient(ellipse at 50% 100%, #24105e 0%, transparent 55%), var(--color-background);
+
+  font-family: var(--font-main);
+  font-size: var(--font-size-medium);
+}
+
+/* Common elements */
+
+button,
+select,
+input {
+  font: inherit;
+}
+
+select,
+option,
+button {
+  cursor: pointer;
+}
+
+select:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+a {
+  color: inherit;
+}
+
+select {
+  color: var(--color-text);
+  background-color: var(--color-panel);
+  border: var(--border-secondary);
+  border-radius: var(--border-radius);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-highlight);
+  outline-offset: 3px;
 }

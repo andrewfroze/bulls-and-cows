@@ -1,7 +1,11 @@
-import { BaseConfig } from "./base";
-import type { Base, BaseObject } from "./types";
+import { BaseConfig } from './base';
+import type { Base, BaseObject } from './types';
 
-export function generateSecret(length: number, base: Base, random: () => number = Math.random): string {
+export function generateSecret(
+  length: number,
+  base: Base,
+  random: () => number = Math.random,
+): string {
   const baseConfig: BaseObject = BaseConfig[base];
 
   if (!Number.isInteger(length) || length < 0) {

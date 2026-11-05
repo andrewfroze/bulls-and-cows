@@ -12,7 +12,7 @@
     "noImplicitAny": true,
     "verbatimModuleSyntax": false,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": true
   },
   "include": ["src", "tests"]
 }

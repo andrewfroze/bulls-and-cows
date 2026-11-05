@@ -1,4 +1,4 @@
-import { describe, expect, jest, test } from '@jest/globals';
+import { describe, expect, test } from '@jest/globals';
 import { generateSecret } from '../../src/game/generateSecret';
 import { Base } from '../../src/game/types';
 

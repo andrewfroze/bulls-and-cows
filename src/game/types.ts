@@ -7,18 +7,18 @@ export interface BaseObject {
   maxLength: number;
   availableChars: string[];
   label: string;
-};
+}
 
 export enum Base {
-    BIN = 'BIN',
-    OCT = 'OCT',
-    DEC = 'DEC',
-    HEX = 'HEX',
-};
+  BIN = 'BIN',
+  OCT = 'OCT',
+  DEC = 'DEC',
+  HEX = 'HEX',
+}
 
 export enum Status {
   PROGRESS = 'progress',
-  FINISHED = 'finished'
+  FINISHED = 'finished',
 }
 
 export interface GameState {
@@ -31,9 +31,9 @@ export interface GameState {
 
 export interface Turn {
   guess: string;
-  result: EvaluationResult
+  result: EvaluationResult;
 }
 
 export interface Settings {
-  base: Base
+  base: Base;
 }

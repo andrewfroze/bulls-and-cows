@@ -1,6 +1,6 @@
-import { memo } from "../utils/memo";
-import { BaseConfig } from "./base";
-import type { Base, BaseObject } from "./types";
+import { memo } from '../utils/memo';
+import { BaseConfig } from './base';
+import type { Base, BaseObject } from './types';
 
 export function countPossibleSecrets(length: number, base: Base): number {
   const baseConfig: BaseObject = BaseConfig[base];

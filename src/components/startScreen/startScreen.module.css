@@ -35,6 +35,7 @@ form.game-settings {
   gap: var(--spacing-medium);
 
   width: min(90%, 420px);
+  min-width: 0;
   padding: var(--spacing-large);
 
   border: 3px solid var(--color-primary);
@@ -67,6 +68,74 @@ select.game-settings__base-dropdown:hover:not(:disabled) {
   box-shadow: var(--shadow-pink);
 }
 
+.action-carousel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-medium);
+  gap: clamp(4px, 2vw, 20px);
+  width: 100%;
+  min-width: 0;
+}
+
+.carousel-viewport {
+  flex: 1 1 288px;
+  min-width: 0;
+  max-width: 288px;
+  overflow: hidden;
+}
+
+.carousel-slides {
+  display: flex;
+  width: 200%;
+  gap: 0;
+
+  transform: translateX(0);
+  transition: transform 0.4s ease-in-out;
+}
+
+.carousel-slide {
+  display: flex;
+  flex: 0 0 50%;
+  min-width: 0;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  padding: 12px;
+}
+
+.carousel-slide button {
+  width: 100%;
+  min-height: 65px;
+}
+
+.carousel-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  padding: 0;
+  flex: 0 0 30px;
+  width: 30px;
+
+  color: var(--color-highlight);
+  background: transparent;
+  border: none;
+
+  font-size: var(--font-size-large);
+  text-shadow: 0 0 8px rgba(255, 213, 46, 0.7);
+
+  transition:
+    transform var(--transition-fast-in-out),
+    text-shadow var(--transition-fast);
+}
+
+.carousel-arrow:hover {
+  transform: scale(1.2);
+  text-shadow: 0 0 14px var(--color-highlight);
+}
+
+button.leaderboard-button,
 button.start-button {
   height: 65px;
   margin-top: var(--spacing-small);
@@ -84,11 +153,12 @@ button.start-button {
 
   box-shadow:
     0 5px 0 #9c4b00,
-    0 0 15px rgba(255, 213, 46, 0.4);
+    0 0 10px rgba(255, 213, 46, 0.4);
 
   transition: var(--transition-fast);
 }
 
+button.leaderboard-button:hover,
 button.start-button:hover {
   filter: brightness(1.15);
   box-shadow:
@@ -96,12 +166,24 @@ button.start-button:hover {
     0 0 25px rgba(255, 213, 46, 0.8);
 }
 
+button.leaderboard-button:active,
 button.start-button:active {
   transform: translateY(4px);
 }
 
+@media (max-width: 600px) {
+  .carousel-viewport {
+    flex-basis: 0;
+  }
+
+  .carousel-slide {
+    padding: 12px 8px;
+  }
+}
+
 .game-settings__combinations-info {
   margin: 0;
+  flex-wrap: wrap;
   color: var(--color-highlight);
   font-size: var(--font-size-medium);
   text-align: center;
@@ -144,6 +226,7 @@ footer.start-screen-footer img {
     padding: 25px 20px;
   }
 
+  button.leaderboard-button,
   button.start-button {
     font-size: 11px;
   }

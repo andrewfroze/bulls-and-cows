@@ -83,12 +83,6 @@ export class GameController {
     saveRecord(state.history.length, state.time, state.settings);
   }
 
-  public openLeaderboard(): void {
-    renderLeaderboardModal({
-      settings: this.getState().settings,
-    });
-  }
-
   private startTimer(): void {
     this.gameStartedAt = Date.now();
 

@@ -1,4 +1,4 @@
-import { Base, GameState } from '../../game';
+import { Base, GameState, Settings } from '../../game';
 import { renderHeader, updateTimer } from './header.module';
 import { disableIfFinished, renderMain } from './main.module';
 import { renderFooter, updateHistory } from './footer.module';
@@ -7,7 +7,7 @@ export interface GameScreenOptions {
   base: Base;
   length: number;
   onNewGame: () => void;
-  onOpenLeaderboard: () => void;
+  onOpenLeaderboard: (settings: Settings) => void;
   onSubmitGuess: (guess: string) => void;
   isHasDuplicates: (guess: string) => boolean;
 }
@@ -19,7 +19,7 @@ let footer;
 export function renderGameScreen(options: GameScreenOptions): HTMLElement[] {
   header = renderHeader({
     onNewGame: options.onNewGame,
-    onOpenLeaderboard: options.onOpenLeaderboard,
+    onOpenLeaderboard: () => options.onOpenLeaderboard({ base: options.base, length: options.length }),
   });
   main = renderMain({
     base: options.base,

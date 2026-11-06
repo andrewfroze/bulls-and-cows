@@ -1,3 +1,4 @@
+import { Settings } from '../../game';
 import { createElement } from '../utils/elementFactory';
 import styles from './gameScreen.module.css';
 

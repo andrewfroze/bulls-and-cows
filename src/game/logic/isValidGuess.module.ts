@@ -1,5 +1,6 @@
 import { BaseConfig } from '../base.module';
 import type { Base, BaseObject } from '../types.module';
+import { createDigitValidator } from './createDigitValidator.module';
 
 export function isValidGuess(guess: string, length: number, base: Base): boolean {
   if (guess === '') {
@@ -17,11 +18,11 @@ export function isValidGuess(guess: string, length: number, base: Base): boolean
     return false;
   }
 
-  const baseConfig: BaseObject = BaseConfig[base];
+  const digitValidator: (value: string) => boolean = createDigitValidator(base);
 
   const areAllCharsValid: boolean = uniqueChars
     .values()
-    .every((char) => baseConfig.availableChars.includes(char));
+    .every((char) => digitValidator(char));
 
   if (!areAllCharsValid) {
     return false;

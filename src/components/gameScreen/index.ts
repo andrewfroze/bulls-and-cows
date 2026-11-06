@@ -1,5 +1,5 @@
 import { Base, GameState, Settings } from '../../game';
-import { renderHeader, updateTimer } from './header.module';
+import { GameScreenHeader, renderHeader, updateTimer } from './header/header.module';
 import { renderMain } from './main/main.module';
 import { GameScreenFooter, renderFooter } from './footer/footer.module';
 import { updateHistory } from './footer/attemptHistory.module';
@@ -14,7 +14,7 @@ export interface GameScreenOptions {
   isHasDuplicates: (guess: string) => boolean;
 }
 
-let header: HTMLElement;
+let header: GameScreenHeader;
 let main: HTMLElement;
 let footer: GameScreenFooter;
 
@@ -31,11 +31,11 @@ export function renderGameScreen(options: GameScreenOptions): HTMLElement[] {
     isHasDuplicates: options.isHasDuplicates,
   });
   footer = renderFooter();
-  return [header, main, footer.element];
+  return [header.element, main, footer.element];
 }
 
 export function updateGameScreen(state: GameState): void {
   updateHistory(footer.element, state.history);
-  updateTimer(state.time);
+  updateTimer(header.timer, state.time);
   disableIfFinished(main, state);
 }

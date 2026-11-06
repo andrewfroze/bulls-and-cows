@@ -1,20 +1,22 @@
-import { Settings } from '../../game';
-import { createElement } from '../utils/elementFactory';
-import styles from './gameScreen.module.css';
+import { createElement } from '../../utils/elementFactory';
+import styles from '../gameScreen.module.css';
 
 interface HeaderOptions {
   onNewGame: () => void;
   onOpenLeaderboard: () => void;
 }
 
-let timer: HTMLLabelElement;
+export interface GameScreenHeader {
+  element: HTMLElement;
+  timer: HTMLLabelElement;
+}
 
-export function renderHeader(options: HeaderOptions): HTMLElement {
+export function renderHeader(options: HeaderOptions): GameScreenHeader {
   const title = createElement('h1', {
     textContent: 'BULLS & COWS',
   });
 
-  timer = createElement('label', {
+  const timer = createElement('label', {
     className: styles['game-timer'],
     textContent: formatTime(0),
   });
@@ -42,13 +44,18 @@ export function renderHeader(options: HeaderOptions): HTMLElement {
     [timer, newGameButton, leaderboardButton],
   );
 
-  return createElement(
+  const element = createElement(
     'header',
     {
       className: styles['game-screen-header'],
     },
     [title, controls],
   );
+
+  return {
+    element,
+    timer,
+  };
 }
 
 export function formatTime(totalSeconds: number): string {
@@ -58,6 +65,6 @@ export function formatTime(totalSeconds: number): string {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-export function updateTimer(elapsedSeconds: number): void {
+export function updateTimer(timer: HTMLLabelElement, elapsedSeconds: number): void {
   timer.textContent = formatTime(elapsedSeconds);
 }

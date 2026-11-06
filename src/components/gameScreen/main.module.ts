@@ -1,5 +1,5 @@
 import { createElement } from '../utils/elementFactory';
-import { Base, BaseObject, GameState, Status } from '../../game';
+import { Base, BaseObject, GameState, isHistoryContainsGuess, Status } from '../../game';
 import styles from './gameScreen.module.css';
 import { BaseConfig } from '../../game';
 import { createDigitValidator } from '../../game';
@@ -8,6 +8,7 @@ import { isValidGuess } from '../../game';
 interface MainOptions {
   base: Base;
   length: number;
+  isHasDuplicates: (guess: string) => boolean;
   onSubmitGuess: (guess: string) => void;
 }
 
@@ -100,6 +101,10 @@ export function renderMain(options: MainOptions): HTMLElement {
 
     if (!isValid) {
       input.setCustomValidity('Invalid input');
+      input.reportValidity();
+      return;
+    } else if (options.isHasDuplicates(guess)) {
+      input.setCustomValidity('Already tried');
       input.reportValidity();
       return;
     } else {

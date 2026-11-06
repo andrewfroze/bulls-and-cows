@@ -46,3 +46,7 @@ export function updateTime(state: GameState, time: number): GameState {
         time,
     };
 }
+
+export function isHistoryContainsGuess(state: GameState, guess: string): boolean {
+  return state.history.some((turn: Turn) => turn.guess.toLowerCase() === guess.toLowerCase());
+}

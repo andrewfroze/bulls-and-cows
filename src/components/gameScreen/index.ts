@@ -9,6 +9,7 @@ export interface GameScreenOptions {
     onNewGame: () => void;
     onOpenLeaderboard: () => void;
     onSubmitGuess: (guess: string) => void;
+    isHasDuplicates: (guess: string) => boolean;
 }
 
 let header;
@@ -26,6 +27,7 @@ export function renderGameScreen(
     base: options.base,
     length: options.length,
     onSubmitGuess: options.onSubmitGuess,
+    isHasDuplicates: options.isHasDuplicates,
   });
   footer = renderFooter();
   return [header, main, footer];

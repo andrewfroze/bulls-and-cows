@@ -1,5 +1,5 @@
 import { createElement } from '../utils/elementFactory';
-import { Base, defaultBase, defaultLength, type Settings } from '../../game';
+import { defaultBase, defaultLength, type Settings } from '../../game';
 import { getLeaderboard } from '../../game/leaderboard/leaderboardStorage';
 import { createModal } from './modal.module';
 import { createLeaderboardFilters, getSelectedSettings } from './leaderboardFilters.module';

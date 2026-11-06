@@ -1,5 +1,4 @@
-import { BaseConfig } from '../base.module';
-import type { Base, BaseObject } from '../types.module';
+import type { Base } from '../types.module';
 import { createDigitValidator } from './createDigitValidator.module';
 
 export function isValidGuess(guess: string, length: number, base: Base): boolean {

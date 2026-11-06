@@ -42,7 +42,7 @@ export default [
         'error',
         {
           default: 'allow',
-          rules: [
+          policies: [
             {
               disallow: {
                 to: {

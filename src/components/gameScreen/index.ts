@@ -19,7 +19,8 @@ let footer;
 export function renderGameScreen(options: GameScreenOptions): HTMLElement[] {
   header = renderHeader({
     onNewGame: options.onNewGame,
-    onOpenLeaderboard: () => options.onOpenLeaderboard({ base: options.base, length: options.length }),
+    onOpenLeaderboard: () =>
+      options.onOpenLeaderboard({ base: options.base, length: options.length }),
   });
   main = renderMain({
     base: options.base,

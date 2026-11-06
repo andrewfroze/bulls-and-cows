@@ -20,9 +20,7 @@ export function isValidGuess(guess: string, length: number, base: Base): boolean
 
   const digitValidator: (value: string) => boolean = createDigitValidator(base);
 
-  const areAllCharsValid: boolean = uniqueChars
-    .values()
-    .every((char) => digitValidator(char));
+  const areAllCharsValid: boolean = uniqueChars.values().every((char) => digitValidator(char));
 
   if (!areAllCharsValid) {
     return false;

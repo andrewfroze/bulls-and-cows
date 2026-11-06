@@ -6,7 +6,9 @@ import { GameController } from './controllers/gameController';
 import { isHistoryContainsGuess } from '../game';
 
 export function start(): void {
-  document.body.replaceChildren(...renderStartScreen(startGame, (settings: Settings) => openLeaderboard(settings)));
+  document.body.replaceChildren(
+    ...renderStartScreen(startGame, (settings: Settings) => openLeaderboard(settings)),
+  );
 }
 
 function startGame(base: Base, length: number): void {
@@ -24,8 +26,8 @@ function startGame(base: Base, length: number): void {
   gameController.startGame({ base, length });
 }
 
-  function openLeaderboard(settings: Settings): void {
-    renderLeaderboardModal({
-      settings,
-    });
-  }
+function openLeaderboard(settings: Settings): void {
+  renderLeaderboardModal({
+    settings,
+  });
+}

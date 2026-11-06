@@ -10,6 +10,6 @@ export function renderStartScreen(
   return [
     renderHeader(),
     renderMain(onStartGame, (base: Base, length: number) => onOpenLeaderboard({ base, length })),
-    renderFooter()
+    renderFooter(),
   ];
 }

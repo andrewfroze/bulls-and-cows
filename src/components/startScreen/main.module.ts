@@ -42,27 +42,18 @@ export function renderMain(
     title: 'Next',
   });
 
+  const slides = createElement('div', { className: styles['carousel-slides'] }, [
+    createElement('div', { className: styles['carousel-slide'] }, [startButton]),
+    createElement('div', { className: styles['carousel-slide'] }, [leaderboardButton]),
+  ]);
 
-const slides = createElement(
-    'div',
-    { className: styles['carousel-slides'] },
-    [
-      createElement('div', { className: styles['carousel-slide'] }, [startButton]),
-      createElement('div', { className: styles['carousel-slide'] }, [leaderboardButton]),
-    ],
-  );
+  const viewport = createElement('div', { className: styles['carousel-viewport'] }, [slides]);
 
-  const viewport = createElement(
-    'div',
-    { className: styles['carousel-viewport'] },
-    [slides],
-  );
-
-  const carousel = createElement(
-    'div',
-    { className: styles['action-carousel'] },
-    [previousButton, viewport, nextButton],
-  );
+  const carousel = createElement('div', { className: styles['action-carousel'] }, [
+    previousButton,
+    viewport,
+    nextButton,
+  ]);
 
   let isAnimating = false;
   let direction: 'next' | 'previous' | null = null;
@@ -151,10 +142,7 @@ const slides = createElement(
     {
       className: styles['start-screen-main'],
     },
-    [
-      form,
-      combinationsInfo
-    ],
+    [form, combinationsInfo],
   );
 }
 
@@ -224,13 +212,16 @@ function startGame(form: HTMLFormElement, onStartGame: (base: Base, length: numb
   onStartGame(formData.base, formData.length);
 }
 
-function openLeaderboard(form: HTMLFormElement, onOpenLeaderboard: (base: Base, length: number) => void): void {
+function openLeaderboard(
+  form: HTMLFormElement,
+  onOpenLeaderboard: (base: Base, length: number) => void,
+): void {
   const formData = getFormParameters(form);
 
   onOpenLeaderboard(formData.base, formData.length);
 }
 
-function getFormParameters(form: HTMLFormElement): { base: Base, length: number } {
+function getFormParameters(form: HTMLFormElement): { base: Base; length: number } {
   const formData = new FormData(form);
 
   const base = formData.get('base') as Base;
@@ -242,5 +233,5 @@ function getFormParameters(form: HTMLFormElement): { base: Base, length: number 
 
   const length = Number(lengthElement.value);
 
-  return { base,  length };
+  return { base, length };
 }

@@ -1,11 +1,16 @@
 import { createElement } from '../utils/elementFactory';
-import { BaseConfig, defaultBase, defaultLength } from '../../game';
-import { Base } from '../../game';
+import { BaseConfig, defaultBase, defaultLength, Base, countPossibleSecrets } from '../../game';
 import styles from './startScreen.module.css';
 
 const baseDropdown: HTMLSelectElement = createBaseDropdown();
 const secretLengthDropdown: HTMLSelectElement = createEmptySecretLengthDropdown();
+
+const combinationsInfo: HTMLParagraphElement = createElement('p', {
+  className: styles['game-settings__combinations-info'],
+});
+
 updateSelectLengthDropdownOptions(defaultBase);
+updateCombinationsInfo();
 
 export function renderMain(onStartGame: (base: Base, length: number) => void): HTMLElement {
   const startButton: HTMLButtonElement = createElement('button', {
@@ -29,14 +34,20 @@ export function renderMain(onStartGame: (base: Base, length: number) => void): H
 
   baseDropdown.addEventListener('change', () => {
     updateSelectLengthDropdownOptions(baseDropdown.value as Base);
+    updateCombinationsInfo();
   });
+
+  secretLengthDropdown.addEventListener('change', updateCombinationsInfo);
 
   return createElement(
     'main',
     {
       className: styles['start-screen-main'],
     },
-    [form],
+    [
+      form,
+      combinationsInfo
+    ],
   );
 }
 
@@ -89,6 +100,15 @@ function updateSelectLengthDropdownOptions(base: Base): void {
   secretLengthDropdown.value = String(Math.min(availableMaxLength, defaultLength));
 
   secretLengthDropdown.disabled = options.length < 2;
+}
+
+function updateCombinationsInfo(): void {
+  const base = baseDropdown.value as Base;
+  const length = Number(secretLengthDropdown.value);
+
+  const count = countPossibleSecrets(length, base);
+
+  combinationsInfo.textContent = `Possible combinations: ${count.toLocaleString()}`;
 }
 
 function startGame(form: HTMLFormElement, onStartGame: (base: Base, length: number) => void): void {

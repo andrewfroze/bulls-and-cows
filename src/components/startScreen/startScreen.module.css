@@ -21,8 +21,10 @@ header.start-screen-header h1 {
 
 main.start-screen-main {
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: flex-start;
   height: calc(100vh - 250px);
   min-height: 400px;
 }
@@ -96,6 +98,14 @@ button.start-button:hover {
 
 button.start-button:active {
   transform: translateY(4px);
+}
+
+.game-settings__combinations-info {
+  margin: 0;
+  color: var(--color-highlight);
+  font-size: var(--font-size-medium);
+  text-align: center;
+  text-shadow: 0 0 6px rgba(255, 213, 46, 0.4);
 }
 
 footer.start-screen-footer {

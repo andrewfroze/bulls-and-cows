@@ -1,4 +1,3 @@
-import { renderLeaderboardModal, renderVictoryModal } from '../../components/modal';
 import {
   generateSecret,
   getGameState,
@@ -12,13 +11,14 @@ import {
   type Settings,
   type Turn,
 } from '../../game';
-import { saveRecord } from '../../game/leaderboard/leaderboardStorage';
-import { EvaluationResult } from '../../game/types.module';
+import type { EvaluationResult } from '../../game/types.module';
+
+import { GameTimer } from './game/gameTimer';
+import { handleVictory } from './game/victoryHandler';
 
 export class GameController {
   private state: GameState = getGameState();
-  private timerId: ReturnType<typeof setInterval> | null = null;
-  private gameStartedAt = 0;
+  private readonly timer = new GameTimer();
 
   public constructor(
     private readonly onStateChange: (state: GameState) => void,
@@ -26,14 +26,16 @@ export class GameController {
   ) {}
 
   public startGame(settings: Settings): void {
-    this.stopTimer();
-    this.state = getGameState(settings);
+    this.timer.stop();
 
     const secret = generateSecret(settings.length, settings.base);
 
-    this.state = updateSecret(this.state, secret);
+    this.state = updateSecret(getGameState(settings), secret);
 
-    this.startTimer();
+    this.timer.start((elapsedSeconds) => {
+      this.updateGameTime(elapsedSeconds);
+    });
+
     this.notify();
   }
 
@@ -42,22 +44,13 @@ export class GameController {
       throw new Error('Game is not in progress');
     }
 
-    console.log(this.state.secret);
     const result: EvaluationResult = evaluateGuess(this.state.secret, guess);
     const turn: Turn = { guess, result };
 
     this.state = addTurn(this.state, turn);
 
     if (result.bulls === this.state.settings.length) {
-      this.state = updateStatus(this.state, Status.FINISHED);
-
-      this.stopTimer();
-
-      const elapsedSeconds = Math.floor((Date.now() - this.gameStartedAt) / 1000);
-
-      this.state = updateTime(this.state, elapsedSeconds);
-
-      this.handleVictory(this.openHome);
+      this.finishGame();
     }
 
     this.notify();
@@ -65,42 +58,20 @@ export class GameController {
     return turn;
   }
 
-  private handleVictory(onNewGame: () => void): void {
-    const state = this.getState();
-    renderVictoryModal({
-      attempts: state.history.length,
-      time: state.time,
+  private finishGame(): void {
+    const elapsedSeconds = this.timer.stop();
 
-      onNewGame,
+    this.state = updateStatus(this.state, Status.FINISHED);
+    this.state = updateTime(this.state, elapsedSeconds);
 
-      onLeaderboard: () => {
-        renderLeaderboardModal({
-          settings: state.settings,
-          onNewGame,
-        });
-      },
-    });
-    saveRecord(state.history.length, state.time, state.settings);
-  }
-
-  private startTimer(): void {
-    this.gameStartedAt = Date.now();
-
-    this.timerId = setInterval(() => {
-      const elapsedSeconds = Math.floor((Date.now() - this.gameStartedAt) / 1000);
-
-      this.updateGameTime(elapsedSeconds);
-    }, 1000);
-  }
-
-  private stopTimer(): void {
-    if (this.timerId !== null) {
-      clearInterval(this.timerId);
-      this.timerId = null;
-    }
+    handleVictory(this.state, this.openHome);
   }
 
   public updateGameTime(time: number): void {
+    if (this.state.status !== Status.PROGRESS) {
+      return;
+    }
+
     this.state = updateTime(this.state, time);
     this.notify();
   }

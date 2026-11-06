@@ -22,6 +22,7 @@ export interface ModalInstance {
 }
 
 export function createModal(options: ModalOptions): ModalInstance {
+  document.body.classList.add('modal-opened');
   const dialog = createElement('dialog', {
     className: styles.modal,
   });
@@ -95,6 +96,7 @@ export function createModal(options: ModalOptions): ModalInstance {
   dialog.addEventListener('close', () => {
     options.onClose?.();
     dialog.remove();
+    document.body.classList.remove('modal-opened');
   });
 
   document.body.append(dialog);

@@ -34,20 +34,32 @@ export function createActionCarousel(): ActionCarousel {
     title: 'Next',
   });
 
-  const slides = createElement('div', {
-    className: styles['carousel-slides'],
-  }, [
-    createElement('div', { className: styles['carousel-slide'] }, [startButton]),
-    createElement('div', { className: styles['carousel-slide'] }, [leaderboardButton]),
-  ]);
+  const slides = createElement(
+    'div',
+    {
+      className: styles['carousel-slides'],
+    },
+    [
+      createElement('div', { className: styles['carousel-slide'] }, [startButton]),
+      createElement('div', { className: styles['carousel-slide'] }, [leaderboardButton]),
+    ],
+  );
 
-  const viewport = createElement('div', {
-    className: styles['carousel-viewport'],
-  }, [slides]);
+  const viewport = createElement(
+    'div',
+    {
+      className: styles['carousel-viewport'],
+    },
+    [slides],
+  );
 
-  const element = createElement('div', {
-    className: styles['action-carousel'],
-  }, [previousButton, viewport, nextButton]);
+  const element = createElement(
+    'div',
+    {
+      className: styles['action-carousel'],
+    },
+    [previousButton, viewport, nextButton],
+  );
 
   let isAnimating = false;
   let direction: 'next' | 'previous' | null = null;

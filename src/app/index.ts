@@ -1,4 +1,3 @@
-
 import { renderStartScreen } from '../components/startScreen';
 import { renderGameScreen, updateGameScreen, updateTimer } from '../components/gameScreen';
 import type { Base, Settings } from '../game';
@@ -6,19 +5,13 @@ import { renderLeaderboardModal } from '../components/modal';
 import { GameController } from './controllers/gameController';
 import { isHistoryContainsGuess } from '../game';
 
-const gameController = new GameController(
-  updateTimer,
-  updateGameScreen,
-  start);
+const gameController = new GameController(updateTimer, updateGameScreen, start);
 
 export function start(): void {
   gameController.stopGame();
 
   document.body.replaceChildren(
-    ...renderStartScreen(
-      startGame,
-      (settings: Settings) => openLeaderboard(settings),
-    ),
+    ...renderStartScreen(startGame, (settings: Settings) => openLeaderboard(settings)),
   );
 }
 
@@ -30,8 +23,7 @@ function startGame(base: Base, length: number): void {
       onNewGame: start,
       onOpenLeaderboard: openLeaderboard,
       onSubmitGuess: (guess: string) => gameController.makeGuess(guess),
-      isHasDuplicates: (guess: string) =>
-        isHistoryContainsGuess(gameController.getState(), guess),
+      isHasDuplicates: (guess: string) => isHistoryContainsGuess(gameController.getState(), guess),
     }),
   );
 

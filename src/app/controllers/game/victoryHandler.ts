@@ -1,12 +1,8 @@
-
 import { renderLeaderboardModal, renderVictoryModal } from '../../../components/modal';
 import { saveRecord } from '../../../game/leaderboard/leaderboardStorage';
 import type { GameState } from '../../../game';
 
-export function handleVictory(
-  state: GameState,
-  onNewGame: () => void,
-): void {
+export function handleVictory(state: GameState, onNewGame: () => void): void {
   saveRecord(state.history.length, state.time, state.settings);
 
   renderVictoryModal({

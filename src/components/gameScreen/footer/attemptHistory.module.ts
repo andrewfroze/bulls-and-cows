@@ -19,9 +19,7 @@ export function createAttemptHistory(): HTMLElement {
 }
 
 export function updateHistory(historyList: HTMLElement, turns: Turn[]): void {
-  const rows = turns
-    .map((turn, index) => createAttemptRow(turn, index))
-    .reverse();
+  const rows = turns.map((turn, index) => createAttemptRow(turn, index)).reverse();
 
   historyList.replaceChildren(...(rows.length ? rows : [createEmptyMessage()]));
 }

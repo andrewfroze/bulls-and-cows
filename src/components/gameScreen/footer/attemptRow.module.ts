@@ -15,7 +15,8 @@ export function createAttemptRow(turn: Turn, index: number): HTMLElement {
     textContent: turn.guess,
   });
 
-  const bulls = createElement('div',
+  const bulls = createElement(
+    'div',
     {
       className: styles['attempt-bulls'],
     },
@@ -28,10 +29,11 @@ export function createAttemptRow(turn: Turn, index: number): HTMLElement {
         className: styles['attempt-bulls__value'],
         textContent: String(turn.result.bulls),
       }),
-    ]
+    ],
   );
 
-  const cows = createElement('div',
+  const cows = createElement(
+    'div',
     {
       className: styles['attempt-cows'],
     },
@@ -44,7 +46,7 @@ export function createAttemptRow(turn: Turn, index: number): HTMLElement {
         className: styles['attempt-cows__value'],
         textContent: String(turn.result.cows),
       }),
-    ]
+    ],
   );
 
   return createElement(

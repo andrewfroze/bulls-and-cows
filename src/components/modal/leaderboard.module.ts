@@ -18,27 +18,19 @@ export function renderLeaderboardModal(options: LeaderboardModalOptions = {}) {
     length: defaultLength,
   };
 
-  const filters = createLeaderboardFilters(
-    initialSettings.base,
-    initialSettings.length,
-  );
+  const filters = createLeaderboardFilters(initialSettings.base, initialSettings.length);
 
   const tableContainer = createElement('div', {
     className: styles['leaderboard-modal__table-container'],
   });
 
-  const content = createElement(
-    'div',
-    { className: styles['leaderboard-modal'] },
-    [
-      createElement(
-        'div',
-        { className: styles['leaderboard-modal__filters'] },
-        [filters.baseDropdown, filters.lengthDropdown],
-      ),
-      tableContainer,
-    ],
-  );
+  const content = createElement('div', { className: styles['leaderboard-modal'] }, [
+    createElement('div', { className: styles['leaderboard-modal__filters'] }, [
+      filters.baseDropdown,
+      filters.lengthDropdown,
+    ]),
+    tableContainer,
+  ]);
 
   const updateTable = (): void => {
     const entries = getLeaderboard(getSelectedSettings(filters));

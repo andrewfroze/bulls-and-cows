@@ -35,23 +35,13 @@ export function renderMain(options: MainOptions): HTMLElement {
     throw new Error('Guess input not found');
   }
 
-  const availableChars = createAvailableChars(
-    options.base,
-    input,
-    options.length,
-  );
+  const availableChars = createAvailableChars(options.base, input, options.length);
 
   return createElement(
     'main',
     {
       className: styles['game-screen-main'],
     },
-    [
-      description,
-      gameInfo,
-      availableCharsLabel,
-      availableChars,
-      guessForm,
-    ],
+    [description, gameInfo, availableCharsLabel, availableChars, guessForm],
   );
 }

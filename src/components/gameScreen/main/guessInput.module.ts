@@ -92,9 +92,7 @@ function validateInput(
   });
 
   if (invalidChars.length > 0) {
-    input.setCustomValidity(
-      `Invalid characters: ${[...new Set(invalidChars)].join(', ')}`,
-    );
+    input.setCustomValidity(`Invalid characters: ${[...new Set(invalidChars)].join(', ')}`);
   } else if (chars.length > length) {
     input.setCustomValidity(`Maximum ${length} digits allowed`);
   } else if (duplicateChars.length > 0) {

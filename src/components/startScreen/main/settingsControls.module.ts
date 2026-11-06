@@ -68,10 +68,7 @@ function createCombinationsInfo(): HTMLParagraphElement {
   });
 }
 
-function updateSelectLengthDropdownOptions(
-  dropdown: HTMLSelectElement,
-  base: Base,
-): void {
+function updateSelectLengthDropdownOptions(dropdown: HTMLSelectElement, base: Base): void {
   const minLength = 2;
   const maxLength = 6;
   const availableMaxLength = Math.min(maxLength, BaseConfig[base].maxLength);

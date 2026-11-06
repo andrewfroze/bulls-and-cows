@@ -10,10 +10,7 @@ export interface LeaderboardFilters {
   lengthDropdown: HTMLSelectElement;
 }
 
-export function createLeaderboardFilters(
-  base: Base,
-  length: number,
-): LeaderboardFilters {
+export function createLeaderboardFilters(base: Base, length: number): LeaderboardFilters {
   const baseDropdown = createBaseDropdown(base);
   const lengthDropdown = createLengthDropdown(base, length);
 
@@ -27,9 +24,7 @@ export function createLeaderboardFilters(
   };
 }
 
-export function getSelectedSettings(
-  filters: LeaderboardFilters,
-): { base: Base; length: number } {
+export function getSelectedSettings(filters: LeaderboardFilters): { base: Base; length: number } {
   return {
     base: filters.baseDropdown.value as Base,
     length: Number(filters.lengthDropdown.value),
@@ -87,10 +82,7 @@ function updateLengthDropdownOptions(
 
   dropdown.replaceChildren(...options);
 
-  const normalizedLength = Math.min(
-    availableMaxLength,
-    Math.max(minLength, selectedLength),
-  );
+  const normalizedLength = Math.min(availableMaxLength, Math.max(minLength, selectedLength));
 
   dropdown.value = String(normalizedLength);
   dropdown.disabled = options.length < 2;

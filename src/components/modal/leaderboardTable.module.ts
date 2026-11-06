@@ -19,16 +19,10 @@ export function renderLeaderboard(entries: LeaderboardEntry[]): HTMLElement {
     }),
   );
 
-  const thead = createElement('thead', {}, [
-    createElement('tr', {}, headerCells),
-  ]);
+  const thead = createElement('thead', {}, [createElement('tr', {}, headerCells)]);
 
   const rows = entries.map((entry, index) => {
-    const values = [
-      String(index + 1),
-      String(entry.attempts),
-      formatTime(entry.time),
-    ];
+    const values = [String(index + 1), String(entry.attempts), formatTime(entry.time)];
 
     const cells = values.map((value) =>
       createElement('td', {
@@ -41,11 +35,7 @@ export function renderLeaderboard(entries: LeaderboardEntry[]): HTMLElement {
 
   const tbody = createElement('tbody', {}, rows);
 
-  return createElement(
-    'table',
-    { className: styles['leaderboard-modal__table'] },
-    [thead, tbody],
-  );
+  return createElement('table', { className: styles['leaderboard-modal__table'] }, [thead, tbody]);
 }
 
 function formatTime(seconds: number): string {

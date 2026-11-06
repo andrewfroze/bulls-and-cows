@@ -1,4 +1,3 @@
-
 export class GameTimer {
   private intervalId: ReturnType<typeof setInterval> | null = null;
   private startedAt = 0;

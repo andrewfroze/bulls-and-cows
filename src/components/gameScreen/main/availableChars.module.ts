@@ -31,11 +31,7 @@ export function createAvailableChars(
   );
 }
 
-function appendDigit(
-  input: HTMLInputElement,
-  char: string,
-  length: number,
-): void {
+function appendDigit(input: HTMLInputElement, char: string, length: number): void {
   const normalizedChar = char.toUpperCase();
 
   if (input.value.length >= length) {

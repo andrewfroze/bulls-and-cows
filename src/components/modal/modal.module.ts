@@ -96,7 +96,12 @@ export function createModal(options: ModalOptions): ModalInstance {
   dialog.addEventListener('close', () => {
     options.onClose?.();
     dialog.remove();
-    document.body.classList.remove('modal-opened');
+
+    const hasOpenDialogs = document.querySelector('dialog[open]');
+
+    if (!hasOpenDialogs) {
+      document.body.classList.remove('modal-opened');
+    }
   });
 
   document.body.append(dialog);

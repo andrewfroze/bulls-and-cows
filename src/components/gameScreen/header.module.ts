@@ -6,12 +6,14 @@ interface HeaderOptions {
   onOpenLeaderboard: () => void;
 }
 
+let timer: HTMLLabelElement;
+
 export function renderHeader(options: HeaderOptions): HTMLElement {
   const title = createElement('h1', {
     textContent: 'BULLS & COWS',
   });
 
-  const timer = createElement('div', {
+  timer = createElement('label', {
     className: styles['game-timer'],
     textContent: formatTime(0),
   });
@@ -55,6 +57,6 @@ export function formatTime(totalSeconds: number): string {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-export function updateTimer(timer: HTMLElement, elapsedSeconds: number): void {
+export function updateTimer(elapsedSeconds: number): void {
   timer.textContent = formatTime(elapsedSeconds);
 }

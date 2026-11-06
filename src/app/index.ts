@@ -8,13 +8,13 @@ export function start(): void {
 }
 
 function startGame(base: Base, length: number): void {
-  const gameController: GameController = new GameController(updateGameScreen);
+  const gameController: GameController = new GameController(updateGameScreen, start);
   document.body.replaceChildren(
     ...renderGameScreen({
       base,
       length,
       onNewGame: start,
-      onOpenLeaderboard: () => undefined,
+      onOpenLeaderboard: () => gameController.openLeaderboard(),
       onSubmitGuess: (guess: string) => gameController.makeGuess(guess),
     }),
   );

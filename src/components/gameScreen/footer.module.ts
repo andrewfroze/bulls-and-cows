@@ -60,8 +60,6 @@ function createAttemptRow(turn: Turn, index: number): HTMLElement {
 }
 
 export function updateHistory(turns: Turn[]): void {
-  console.log(turns);
-  // todo optimize
   historyList.replaceChildren(
     ...turns.map((turn, index) => createAttemptRow(turn, index)).reverse()
   );

@@ -1,6 +1,6 @@
 import { Base, GameState } from '../../game';
-import { renderHeader } from './header.module';
-import { renderMain } from './main.module';
+import { renderHeader, updateTimer } from './header.module';
+import { disableIfFinished, renderMain } from './main.module';
 import { renderFooter, updateHistory } from './footer.module';
 
 export interface GameScreenOptions {
@@ -19,8 +19,8 @@ export function renderGameScreen(
     options: GameScreenOptions,
 ): HTMLElement[] {
   header = renderHeader({
-    onNewGame: options.onNewGame,
-    onOpenLeaderboard: options.onOpenLeaderboard,
+      onNewGame: options.onNewGame,
+      onOpenLeaderboard: options.onOpenLeaderboard,
     });
   main = renderMain({
     base: options.base,
@@ -33,4 +33,6 @@ export function renderGameScreen(
 
 export function updateGameScreen(state: GameState): void {
   updateHistory(state.history);
+  updateTimer(state.time);
+  disableIfFinished(state);
 }

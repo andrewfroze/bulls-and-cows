@@ -103,7 +103,7 @@
   max-width: 350px;
 }
 
-.available-chars__values span {
+.available-chars__values button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,7 +120,7 @@
   cursor: pointer;
 }
 
-.available-chars__values span:hover {
+.available-chars__values button:hover:not(:disabled) {
   color: #fff;
   border-color: var(--color-accent);
   box-shadow: var(--shadow-pink);
@@ -199,11 +199,11 @@
   cursor: pointer;
 }
 
-.check-button:hover {
+.check-button:hover:not(:disabled) {
   filter: brightness(1.15);
 }
 
-.check-button:active {
+.check-button:active:not(:disabled) {
   transform: translateY(4px);
   box-shadow: 0 1px 0 #9c4b00;
 }

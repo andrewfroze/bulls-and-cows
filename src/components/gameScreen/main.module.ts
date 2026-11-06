@@ -1,5 +1,5 @@
 import { createElement } from '../utils/elementFactory';
-import { Base, BaseObject } from '../../game';
+import { Base, BaseObject, GameState, Status } from '../../game';
 import styles from './gameScreen.module.css';
 import { BaseConfig } from '../../game';
 import { createDigitValidator } from '../../game';
@@ -11,13 +11,17 @@ interface MainOptions {
   onSubmitGuess: (guess: string) => void;
 }
 
+let input: HTMLInputElement;
+let checkButton: HTMLButtonElement;
+let availableNumbers: HTMLButtonElement[];
+
 export function renderMain(options: MainOptions): HTMLElement {
   const description = createElement('p', {
     className: styles['game-description'],
     textContent: `Guess the ${options.length}-digit secret number`,
   });
 
-  const input = createElement('input', {
+  input = createElement('input', {
     className: styles['game-input'],
     type: 'text',
     name: 'guess',
@@ -71,7 +75,7 @@ export function renderMain(options: MainOptions): HTMLElement {
       .toUpperCase();
   });
 
-  const checkButton = createElement('button', {
+  checkButton = createElement('button', {
     className: styles['check-button'],
     textContent: 'Check',
     type: 'submit',
@@ -109,6 +113,18 @@ export function renderMain(options: MainOptions): HTMLElement {
 
   const baseObject: BaseObject = BaseConfig[options.base];
 
+  availableNumbers = baseObject.availableChars.map((char) => {
+    const labelElement = createElement('button', {
+      textContent: char.toUpperCase(),
+    });
+
+    labelElement.addEventListener('click', () => {
+      appendDigit(input, char, options.length);
+      input.focus();
+    });
+    return labelElement;
+  });
+
   return createElement(
     'main',
     {
@@ -129,17 +145,7 @@ export function renderMain(options: MainOptions): HTMLElement {
         {
           className: styles['available-chars__values'],
         },
-        baseObject.availableChars.map((char) => {
-          const labelElement = createElement('span', {
-            textContent: char.toUpperCase(),
-          });
-
-          labelElement.addEventListener('click', () => {
-            appendDigit(input, char, options.length);
-            input.focus();
-          });
-          return labelElement;
-        }),
+        availableNumbers,
       ),
       form,
     ],
@@ -164,4 +170,12 @@ function appendDigit(input: HTMLInputElement, char: string, length: number): voi
   input.setCustomValidity('');
   input.value += normalizedChar;
   input.dispatchEvent(new Event('input', { bubbles: true }));
+}
+
+export function disableIfFinished(state: GameState): void {
+  if (state.status === Status.FINISHED) {
+    input.disabled = true;
+    checkButton.disabled = true;
+    availableNumbers.forEach((el: HTMLButtonElement) => el.disabled = true);
+  }
 }

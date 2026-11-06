@@ -1,4 +1,3 @@
-
 import { createElement } from '../utils/elementFactory';
 import { createModal } from './modal.module';
 import styles from './victoryModal.module.css';
@@ -33,17 +32,12 @@ export function renderVictoryModal(options: VictoryModalOptions) {
     textContent: `Time: ${formatTime(options.time)}`,
   });
 
-  const stats = createElement(
-    'div',
-    { className: styles['victory-modal__stats'] },
-    [attempts, time],
-  );
+  const stats = createElement('div', { className: styles['victory-modal__stats'] }, [
+    attempts,
+    time,
+  ]);
 
-  const content = createElement(
-    'div',
-    { className: styles['victory-modal'] },
-    [message, stats],
-  );
+  const content = createElement('div', { className: styles['victory-modal'] }, [message, stats]);
 
   return createModal({
     title: 'You won!',

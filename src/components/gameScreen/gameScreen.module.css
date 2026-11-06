@@ -154,8 +154,8 @@
   text-align: center;
 
   box-shadow:
-      inset 0 0 12px rgba(0, 0, 0, 0.8),
-      var(--shadow-purple);
+    inset 0 0 12px rgba(0, 0, 0, 0.8),
+    var(--shadow-purple);
 
   outline: none;
 }
@@ -178,12 +178,7 @@
   min-height: 55px;
 
   color: #251000;
-  background: linear-gradient(
-    180deg,
-    #ffe96b,
-    #ffb900 55%,
-    #f58200
-  );
+  background: linear-gradient(180deg, #ffe96b, #ffb900 55%, #f58200);
 
   border: 3px solid #fff09a;
   border-radius: var(--border-radius);

@@ -61,6 +61,6 @@ function createAttemptRow(turn: Turn, index: number): HTMLElement {
 
 export function updateHistory(turns: Turn[]): void {
   historyList.replaceChildren(
-    ...turns.map((turn, index) => createAttemptRow(turn, index)).reverse()
+    ...turns.map((turn, index) => createAttemptRow(turn, index)).reverse(),
   );
 }

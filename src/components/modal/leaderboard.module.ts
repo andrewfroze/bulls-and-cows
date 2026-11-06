@@ -1,4 +1,3 @@
-
 import { createElement } from '../utils/elementFactory';
 import { BaseConfig, defaultBase, defaultLength } from '../../game';
 import { Base, type Settings } from '../../game';
@@ -29,26 +28,21 @@ export function renderLeaderboardModal(options: LeaderboardModalOptions = {}) {
   };
 
   const baseDropdown = createBaseDropdown(initialSettings.base);
-  const lengthDropdown = createLengthDropdown(
-    initialSettings.base,
-    initialSettings.length,
-  );
+  const lengthDropdown = createLengthDropdown(initialSettings.base, initialSettings.length);
 
   const tableContainer = createElement('div', {
     className: styles['leaderboard-modal__table-container'],
   });
 
-  const filters = createElement(
-    'div',
-    { className: styles['leaderboard-modal__filters'] },
-    [baseDropdown, lengthDropdown],
-  );
+  const filters = createElement('div', { className: styles['leaderboard-modal__filters'] }, [
+    baseDropdown,
+    lengthDropdown,
+  ]);
 
-  const content = createElement(
-    'div',
-    { className: styles['leaderboard-modal'] },
-    [filters, tableContainer],
-  );
+  const content = createElement('div', { className: styles['leaderboard-modal'] }, [
+    filters,
+    tableContainer,
+  ]);
 
   const getSelectedSettings = (): Settings => ({
     base: baseDropdown.value as Base,
@@ -62,10 +56,7 @@ export function renderLeaderboardModal(options: LeaderboardModalOptions = {}) {
   };
 
   baseDropdown.addEventListener('change', () => {
-    updateSelectLengthDropdownOptions(
-      baseDropdown.value as Base,
-      lengthDropdown,
-    );
+    updateSelectLengthDropdownOptions(baseDropdown.value as Base, lengthDropdown);
 
     updateTable();
   });
@@ -139,22 +130,16 @@ function updateSelectLengthDropdownOptions(
   dropdown: HTMLSelectElement,
   selectedLength?: number,
 ): void {
-  const availableMaxLength = Math.min(
-    maxLength,
-    BaseConfig[base].maxLength,
-  );
+  const availableMaxLength = Math.min(maxLength, BaseConfig[base].maxLength);
 
-  const options = Array.from(
-    { length: availableMaxLength - minLength + 1 },
-    (_, index) => {
-      const length = minLength + index;
+  const options = Array.from({ length: availableMaxLength - minLength + 1 }, (_, index) => {
+    const length = minLength + index;
 
-      return createElement('option', {
-        value: String(length),
-        textContent: String(length),
-      });
-    },
-  );
+    return createElement('option', {
+      value: String(length),
+      textContent: String(length),
+    });
+  });
 
   dropdown.replaceChildren(...options);
 
@@ -189,11 +174,7 @@ function renderLeaderboard(entries: LeaderboardEntry[]): HTMLElement {
   const thead = createElement('thead', {}, [headerRow]);
 
   const rows = entries.map((entry, index) => {
-    const values = [
-      String(index + 1),
-      String(entry.attempts),
-      formatTime(entry.time),
-    ];
+    const values = [String(index + 1), String(entry.attempts), formatTime(entry.time)];
 
     const cells = values.map((value) =>
       createElement('td', {
@@ -206,9 +187,5 @@ function renderLeaderboard(entries: LeaderboardEntry[]): HTMLElement {
 
   const tbody = createElement('tbody', {}, rows);
 
-  return createElement(
-    'table',
-    { className: styles['leaderboard-modal__table'] },
-    [thead, tbody],
-  );
+  return createElement('table', { className: styles['leaderboard-modal__table'] }, [thead, tbody]);
 }

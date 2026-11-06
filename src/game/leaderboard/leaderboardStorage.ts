@@ -1,4 +1,3 @@
-
 import { type Settings } from '../types.module';
 
 export interface LeaderboardEntry {
@@ -14,16 +13,13 @@ const MAX_RECORDS = 10;
 export function getLeaderboard(settings: Settings): LeaderboardEntry[] {
   const records = getAllRecords();
 
-  return sortRecords(
-    records.filter((record) => isSameMode(record.settings, settings)),
-  ).slice(0, MAX_RECORDS);
+  return sortRecords(records.filter((record) => isSameMode(record.settings, settings))).slice(
+    0,
+    MAX_RECORDS,
+  );
 }
 
-export function saveRecord(
-  attempts: number,
-  time: number,
-  settings: Settings,
-): LeaderboardEntry[] {
+export function saveRecord(attempts: number, time: number, settings: Settings): LeaderboardEntry[] {
   const records = getAllRecords();
 
   const newRecord: LeaderboardEntry = {
@@ -33,9 +29,7 @@ export function saveRecord(
     createdAt: Date.now(),
   };
 
-  const otherRecords = records.filter(
-    (record) => !isSameMode(record.settings, settings),
-  );
+  const otherRecords = records.filter((record) => !isSameMode(record.settings, settings));
 
   const modeRecords = sortRecords([
     ...records.filter((record) => isSameMode(record.settings, settings)),
@@ -74,9 +68,7 @@ function isSameMode(first: Settings, second: Settings): boolean {
 }
 
 function sortRecords(records: LeaderboardEntry[]): LeaderboardEntry[] {
-  return [...records].sort(
-    (a, b) => a.attempts - b.attempts || a.time - b.time,
-  );
+  return [...records].sort((a, b) => a.attempts - b.attempts || a.time - b.time);
 }
 
 export function clearLeaderboard(): void {

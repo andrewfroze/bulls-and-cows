@@ -181,6 +181,6 @@ export function disableIfFinished(state: GameState): void {
   if (state.status === Status.FINISHED) {
     input.disabled = true;
     checkButton.disabled = true;
-    availableNumbers.forEach((el: HTMLButtonElement) => el.disabled = true);
+    availableNumbers.forEach((el: HTMLButtonElement) => (el.disabled = true));
   }
 }

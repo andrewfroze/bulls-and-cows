@@ -1,4 +1,3 @@
-
 import { createElement } from '../utils/elementFactory';
 import styles from './modal.module.css';
 
@@ -51,17 +50,9 @@ export function createModal(options: ModalOptions): ModalInstance {
     headerChildren.push(closeButton);
   }
 
-  const header = createElement(
-    'header',
-    { className: styles['modal__header'] },
-    headerChildren,
-  );
+  const header = createElement('header', { className: styles['modal__header'] }, headerChildren);
 
-  const content = createElement(
-    'div',
-    { className: styles['modal__content'] },
-    [options.content],
-  );
+  const content = createElement('div', { className: styles['modal__content'] }, [options.content]);
 
   const children: HTMLElement[] = [header, content];
 
@@ -87,11 +78,7 @@ export function createModal(options: ModalOptions): ModalInstance {
       return button;
     });
 
-    const footer = createElement(
-      'footer',
-      { className: styles['modal__footer'] },
-      buttons,
-    );
+    const footer = createElement('footer', { className: styles['modal__footer'] }, buttons);
 
     children.push(footer);
   }

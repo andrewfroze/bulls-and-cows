@@ -1,16 +1,16 @@
 import { renderLeaderboardModal, renderVictoryModal } from '../../components/modal';
 import {
-    generateSecret,
-    getGameState,
-    evaluateGuess,
-    updateSecret,
-    addTurn,
-    updateStatus,
-    updateTime,
-    Status,
-    type GameState,
-    type Settings,
-    type Turn,
+  generateSecret,
+  getGameState,
+  evaluateGuess,
+  updateSecret,
+  addTurn,
+  updateStatus,
+  updateTime,
+  Status,
+  type GameState,
+  type Settings,
+  type Turn,
 } from '../../game';
 import { saveRecord } from '../../game/leaderboard/leaderboardStorage';
 import { EvaluationResult } from '../../game/types.module';
@@ -29,10 +29,7 @@ export class GameController {
     this.stopTimer();
     this.state = getGameState(settings);
 
-    const secret = generateSecret(
-      settings.length,
-      settings.base,
-    );
+    const secret = generateSecret(settings.length, settings.base);
 
     this.state = updateSecret(this.state, secret);
 
@@ -56,9 +53,7 @@ export class GameController {
 
       this.stopTimer();
 
-      const elapsedSeconds = Math.floor(
-        (Date.now() - this.gameStartedAt) / 1000,
-      );
+      const elapsedSeconds = Math.floor((Date.now() - this.gameStartedAt) / 1000);
 
       this.state = updateTime(this.state, elapsedSeconds);
 
@@ -73,17 +68,17 @@ export class GameController {
   private handleVictory(onNewGame: () => void): void {
     const state = this.getState();
     renderVictoryModal({
-        attempts: state.history.length,
-        time: state.time,
+      attempts: state.history.length,
+      time: state.time,
 
-        onNewGame,
+      onNewGame,
 
-        onLeaderboard: () => {
-            renderLeaderboardModal({
-                settings: state.settings,
-                onNewGame,
-            });
-        },
+      onLeaderboard: () => {
+        renderLeaderboardModal({
+          settings: state.settings,
+          onNewGame,
+        });
+      },
     });
     saveRecord(state.history.length, state.time, state.settings);
   }
@@ -98,9 +93,7 @@ export class GameController {
     this.gameStartedAt = Date.now();
 
     this.timerId = setInterval(() => {
-      const elapsedSeconds = Math.floor(
-        (Date.now() - this.gameStartedAt) / 1000,
-      );
+      const elapsedSeconds = Math.floor((Date.now() - this.gameStartedAt) / 1000);
 
       this.updateGameTime(elapsedSeconds);
     }, 1000);

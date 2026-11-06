@@ -20,5 +20,5 @@ function startGame(base: Base, length: number): void {
       isHasDuplicates: (guess: string) => isHistoryContainsGuess(gameController.getState(), guess),
     }),
   );
-  gameController.startGame({base, length});
+  gameController.startGame({ base, length });
 }

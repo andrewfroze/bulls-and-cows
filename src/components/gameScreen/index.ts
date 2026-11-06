@@ -1,5 +1,5 @@
 import { Base, GameState, Settings } from '../../game';
-import { GameScreenHeader, renderHeader, updateTimer } from './header/header.module';
+import { GameScreenHeader, renderHeader, updateTimerElement } from './header/header.module';
 import { renderMain } from './main/main.module';
 import { GameScreenFooter, renderFooter } from './footer/footer.module';
 import { updateHistory } from './footer/attemptHistory.module';
@@ -34,8 +34,11 @@ export function renderGameScreen(options: GameScreenOptions): HTMLElement[] {
   return [header.element, main, footer.element];
 }
 
+export function updateTimer(time: number): void {
+  updateTimerElement(header.timer, time);
+}
+
 export function updateGameScreen(state: GameState): void {
   updateHistory(footer.element, state.history);
-  updateTimer(header.timer, state.time);
   disableIfFinished(main, state);
 }

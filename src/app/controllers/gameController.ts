@@ -21,6 +21,7 @@ export class GameController {
   private readonly timer = new GameTimer();
 
   public constructor(
+    private readonly onTimerChange: (seconds: number) => void,
     private readonly onStateChange: (state: GameState) => void,
     private readonly openHome: () => void,
   ) {}
@@ -77,7 +78,7 @@ export class GameController {
     }
 
     this.state = updateTime(this.state, time);
-    this.notify();
+    this.onTimerChange(time);
   }
 
   public getState(): GameState {

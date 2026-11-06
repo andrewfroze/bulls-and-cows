@@ -65,6 +65,6 @@ export function formatTime(totalSeconds: number): string {
   return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
 }
 
-export function updateTimer(timer: HTMLLabelElement, elapsedSeconds: number): void {
+export function updateTimerElement(timer: HTMLLabelElement, elapsedSeconds: number): void {
   timer.textContent = formatTime(elapsedSeconds);
 }

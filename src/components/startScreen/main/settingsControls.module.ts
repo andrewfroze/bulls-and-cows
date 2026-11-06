@@ -1,6 +1,6 @@
-import { createElement } from '../utils/elementFactory';
-import { BaseConfig, defaultBase, defaultLength, Base, countPossibleSecrets } from '../../game';
-import styles from './startScreen.module.css';
+import { createElement } from '../../utils/elementFactory';
+import { BaseConfig, defaultBase, defaultLength, Base, countPossibleSecrets } from '../../../game';
+import styles from '../startScreen.module.css';
 
 export interface SettingsControls {
   baseDropdown: HTMLSelectElement;

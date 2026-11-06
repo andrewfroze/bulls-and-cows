@@ -1,4 +1,4 @@
-import { Base } from '../../game';
+import { Base } from '../../../game';
 
 export interface FormParameters {
   base: Base;

@@ -1,7 +1,7 @@
 import { Base, Settings } from '../../game';
 import { renderFooter } from './footer.module';
 import { renderHeader } from './header.module';
-import { renderMain } from './main.module';
+import { renderMain } from './main/main.module';
 
 export function renderStartScreen(
   onStartGame: (base: Base, length: number) => void,

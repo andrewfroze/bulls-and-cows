@@ -1,9 +1,9 @@
-import { createElement } from '../utils/elementFactory';
-import { Base } from '../../game';
+import { createElement } from '../../utils/elementFactory';
+import { Base } from '../../../game';
 import { createSettingsControls } from './settingsControls.module';
 import { createActionCarousel } from './actionCarousel.module';
 import { getFormParameters } from './formParameters.module';
-import styles from './startScreen.module.css';
+import styles from '../startScreen.module.css';
 
 export function renderMain(
   onStartGame: (base: Base, length: number) => void,

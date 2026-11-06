@@ -1,5 +1,5 @@
-import { createElement } from '../utils/elementFactory';
-import styles from './startScreen.module.css';
+import { createElement } from '../../utils/elementFactory';
+import styles from '../startScreen.module.css';
 
 export interface ActionCarousel {
   element: HTMLElement;

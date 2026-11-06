@@ -1,7 +1,8 @@
 import { Base, GameState, Settings } from '../../game';
 import { renderHeader, updateTimer } from './header.module';
-import { disableIfFinished, renderMain } from './main.module';
+import { renderMain } from './main/main.module';
 import { renderFooter, updateHistory } from './footer.module';
+import { disableIfFinished } from './main/gameScreenControls.module';
 
 export interface GameScreenOptions {
   base: Base;
@@ -12,9 +13,9 @@ export interface GameScreenOptions {
   isHasDuplicates: (guess: string) => boolean;
 }
 
-let header;
-let main;
-let footer;
+let header: HTMLElement;
+let main: HTMLElement;
+let footer: HTMLElement;
 
 export function renderGameScreen(options: GameScreenOptions): HTMLElement[] {
   header = renderHeader({
@@ -35,5 +36,5 @@ export function renderGameScreen(options: GameScreenOptions): HTMLElement[] {
 export function updateGameScreen(state: GameState): void {
   updateHistory(state.history);
   updateTimer(state.time);
-  disableIfFinished(state);
+  disableIfFinished(main, state);
 }

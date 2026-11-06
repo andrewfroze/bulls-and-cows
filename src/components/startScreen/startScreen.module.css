@@ -1,8 +1,10 @@
 header.start-screen-header {
   display: flex;
-  height: 200px;
+  height: clamp(150px, 25vh, 200px);
   justify-content: center;
   align-items: center;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 
 header.start-screen-header h1 {
@@ -25,8 +27,10 @@ main.start-screen-main {
   gap: 10px;
   align-items: center;
   justify-content: flex-start;
-  height: calc(100vh - 250px);
-  min-height: 400px;
+  height: calc(100vh - clamp(200px, 30vh, 250px));
+  min-height: 350px;
+  box-sizing: border-box;
+  padding: 0 10px;
 }
 
 form.game-settings {
@@ -36,7 +40,8 @@ form.game-settings {
 
   width: min(90%, 420px);
   min-width: 0;
-  padding: var(--spacing-large);
+  padding: clamp(20px, 4vw, 30px);
+  box-sizing: border-box;
 
   border: 3px solid var(--color-primary);
   border-radius: var(--border-radius-large);
@@ -50,8 +55,8 @@ form.game-settings {
 
 select.game-settings__length-dropdown,
 select.game-settings__base-dropdown {
-  height: 48px;
-  padding: 0 15px;
+  height: clamp(42px, 8vw, 48px);
+  padding: 0 clamp(8px, 3vw, 15px);
 
   border: var(--border-secondary);
 
@@ -72,7 +77,6 @@ select.game-settings__base-dropdown:hover:not(:disabled) {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: var(--spacing-medium);
   gap: clamp(4px, 2vw, 20px);
   width: 100%;
   min-width: 0;
@@ -101,12 +105,12 @@ select.game-settings__base-dropdown:hover:not(:disabled) {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 12px;
+  padding: clamp(8px, 2vw, 12px);
 }
 
 .carousel-slide button {
   width: 100%;
-  min-height: 65px;
+  min-height: clamp(55px, 12vw, 65px);
 }
 
 .carousel-arrow {
@@ -137,7 +141,7 @@ select.game-settings__base-dropdown:hover:not(:disabled) {
 
 button.leaderboard-button,
 button.start-button {
-  height: 65px;
+  height: clamp(55px, 12vw, 65px);
   margin-top: var(--spacing-small);
 
   color: #251000;
@@ -148,7 +152,7 @@ button.start-button {
   border-radius: var(--border-radius);
 
   font-family: var(--font-heading);
-  font-size: 14px;
+  font-size: clamp(11px, 2vw, 14px);
   text-transform: uppercase;
 
   box-shadow:
@@ -169,16 +173,6 @@ button.start-button:hover {
 button.leaderboard-button:active,
 button.start-button:active {
   transform: translateY(4px);
-}
-
-@media (max-width: 600px) {
-  .carousel-viewport {
-    flex-basis: 0;
-  }
-
-  .carousel-slide {
-    padding: 12px 8px;
-  }
 }
 
 .game-settings__combinations-info {
@@ -210,24 +204,4 @@ footer.start-screen-footer a:hover {
 footer.start-screen-footer img {
   height: 100%;
   filter: drop-shadow(0 0 4px var(--color-primary));
-}
-
-@media (max-width: 600px) {
-  header.start-screen-header {
-    height: 150px;
-  }
-
-  main.start-screen-main {
-    height: calc(100vh - 200px);
-    min-height: 350px;
-  }
-
-  form.game-settings {
-    padding: 25px 20px;
-  }
-
-  button.leaderboard-button,
-  button.start-button {
-    font-size: 11px;
-  }
 }

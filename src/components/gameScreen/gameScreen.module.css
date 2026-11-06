@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
-  padding: 15px;
+  gap: clamp(15px, 3vw, 20px);
+  padding: clamp(10px, 3vw, 15px);
 }
 
 .game-screen-header h1 {
@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: clamp(7px, 2vw, 12px);
 }
 
 .game-timer {
@@ -37,13 +37,13 @@
 
 .new-game-button,
 .leaderboard-button {
-  padding: 10px 15px;
+  padding: clamp(8px, 2vw, 10px) clamp(8px, 3vw, 15px);
   color: var(--color-text);
   background: linear-gradient(180deg, #34345e, #15152f);
   border: 2px solid var(--color-primary);
   border-radius: var(--border-radius);
   font-family: var(--font-main);
-  font-size: 22px;
+  font-size: clamp(18px, 4vw, 22px);
   transition: var(--transition-fast);
 }
 
@@ -58,10 +58,10 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
+  gap: clamp(16px, 4vw, 20px);
   width: 100%;
   box-sizing: border-box;
-  padding: 30px 15px;
+  padding: clamp(20px, 5vw, 30px) clamp(12px, 3vw, 15px);
   min-height: 260px;
   text-align: center;
 }
@@ -80,7 +80,7 @@
   border: 1px solid var(--color-primary);
   border-radius: var(--border-radius);
   font-family: var(--font-heading);
-  font-size: 15px;
+  font-size: clamp(8px, 3.5vw, 15px);
   letter-spacing: 1px;
   text-transform: uppercase;
   box-shadow: var(--shadow-blue);
@@ -99,7 +99,7 @@
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: clamp(6px, 2vw, 8px);
   max-width: 350px;
 }
 
@@ -107,14 +107,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 34px;
-  height: 38px;
+  width: clamp(30px, 8vw, 34px);
+  height: clamp(34px, 9vw, 38px);
   color: var(--color-highlight);
   background: #050914;
   border: 1px solid var(--color-purple);
   border-radius: 6px;
   font-family: var(--font-heading);
-  font-size: 15px;
+  font-size: clamp(13px, 3.5vw, 15px);
   box-shadow: 0 0 7px rgba(155, 92, 255, 0.25);
   transition: var(--transition-fast);
   cursor: pointer;
@@ -139,24 +139,19 @@
 .game-input {
   box-sizing: border-box;
   width: 100%;
-  height: 65px;
+  height: clamp(58px, 14vw, 65px);
   padding: 10px;
-
   color: var(--color-highlight);
   background: #050914;
-
   border: 3px solid var(--color-purple);
   border-radius: var(--border-radius);
-
   font-family: var(--font-heading);
-  font-size: 24px;
-  letter-spacing: 8px;
+  font-size: clamp(21px, 5vw, 24px);
+  letter-spacing: clamp(6px, 1.5vw, 8px);
   text-align: center;
-
   box-shadow:
     inset 0 0 12px rgba(0, 0, 0, 0.8),
     var(--shadow-purple);
-
   outline: none;
 }
 
@@ -169,27 +164,22 @@
   color: #777a9e;
   font-family: var(--font-main);
   text-transform: uppercase;
-  font-size: 25px;
+  font-size: clamp(15px, 4vw, 25px);
   letter-spacing: normal;
 }
 
 .check-button {
   width: 100%;
   min-height: 55px;
-
   color: #251000;
   background: linear-gradient(180deg, #ffe96b, #ffb900 55%, #f58200);
-
   border: 3px solid #fff09a;
   border-radius: var(--border-radius);
-
   font-family: var(--font-heading);
   font-size: 13px;
-
   box-shadow:
     0 5px 0 #9c4b00,
     0 0 12px rgba(255, 213, 46, 0.3);
-
   transition: var(--transition-fast);
   cursor: pointer;
 }
@@ -231,25 +221,23 @@
 .attempt-history__empty {
   color: var(--color-text-secondary);
   text-align: center;
-  font-size: 21px;
+  font-size: clamp(17px, 4vw, 21px);
 }
 
 .attempt-row {
   display: grid;
   grid-template-columns: 35px 1fr 50px 50px;
   align-items: center;
-  gap: 8px;
-  padding: 10px;
+  gap: clamp(4px, 2vw, 8px);
+  padding: clamp(8px, 2vw, 10px);
   width: 100%;
   max-width: 400px;
-
+  box-sizing: border-box;
   color: var(--color-text);
   background: rgba(8, 13, 48, 0.9);
-
   border: 1px solid rgba(22, 139, 255, 0.5);
   border-radius: var(--border-radius);
-
-  font-size: 20px;
+  font-size: clamp(17px, 4vw, 20px);
 }
 
 .attempt-number {
@@ -259,89 +247,27 @@
 .attempt-guess {
   color: var(--color-highlight);
   font-family: var(--font-heading);
-  font-size: 13px;
+  font-size: clamp(11px, 2.8vw, 13px);
   letter-spacing: 2px;
+}
+
+.attempt-bulls,
+.attempt-cows {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .attempt-bulls {
   color: var(--color-success);
-  display: flex;
-  gap: 5px;
-  justify-content: flex-end;
-  align-items: center;
-
-  img {
-    width: 20px;
-  }
 }
 
 .attempt-cows {
   color: var(--color-warning);
-  display: flex;
-  gap: 5px;
-  justify-content: flex-end;
-  align-items: center;
-
-  img {
-    width: 20px;
-  }
 }
 
-@media (max-width: 450px) {
-  .game-screen-header {
-    gap: 15px;
-  }
-
-  .game-header__controls {
-    gap: 7px;
-  }
-
-  .new-game-button,
-  .leaderboard-button {
-    padding: 8px;
-    font-size: 18px;
-  }
-
-  .game-screen-main {
-    gap: 16px;
-    padding: 20px 12px;
-  }
-
-  .game-info {
-    font-size: clamp(8px, 3.5vw, 13px);
-  }
-
-  .available-chars__values {
-    gap: 6px;
-  }
-
-  .available-chars__values span {
-    width: 30px;
-    height: 34px;
-    font-size: 13px;
-  }
-
-  .guess-form {
-    width: min(100%, 320px);
-  }
-
-  .game-input {
-    height: 58px;
-    font-size: 21px;
-    letter-spacing: 6px;
-  }
-
-  .game-input::placeholder {
-    font-size: 15px;
-  }
-
-  .attempt-row {
-    gap: 4px;
-    padding: 8px 4px;
-    font-size: 17px;
-  }
-
-  .attempt-guess {
-    font-size: 11px;
-  }
+.attempt-bulls img,
+.attempt-cows img {
+  width: clamp(16px, 5vw, 20px);
 }

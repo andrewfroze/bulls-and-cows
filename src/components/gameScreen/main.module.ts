@@ -1,5 +1,5 @@
 import { createElement } from '../utils/elementFactory';
-import { Base, BaseObject, GameState, isHistoryContainsGuess, Status } from '../../game';
+import { Base, BaseObject, GameState, Status } from '../../game';
 import styles from './gameScreen.module.css';
 import { BaseConfig } from '../../game';
 import { createDigitValidator } from '../../game';

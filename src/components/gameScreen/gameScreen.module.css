@@ -236,10 +236,12 @@
 
 .attempt-row {
   display: grid;
-  grid-template-columns: 35px 1fr 1fr 1fr;
+  grid-template-columns: 35px 1fr 50px 50px;
   align-items: center;
   gap: 8px;
   padding: 10px;
+  width: 100%;
+  max-width: 400px;
 
   color: var(--color-text);
   background: rgba(8, 13, 48, 0.9);
@@ -263,10 +265,26 @@
 
 .attempt-bulls {
   color: var(--color-success);
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  align-items: center;
+
+  img {
+    width: 20px;
+  }
 }
 
 .attempt-cows {
   color: var(--color-warning);
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  align-items: center;
+
+  img {
+    width: 20px;
+  }
 }
 
 @media (max-width: 450px) {
@@ -318,7 +336,6 @@
   }
 
   .attempt-row {
-    grid-template-columns: 25px 1fr 1fr 1fr;
     gap: 4px;
     padding: 8px 4px;
     font-size: 17px;

@@ -67,6 +67,10 @@ export class GameController {
     handleVictory(this.state, this.openHome);
   }
 
+  public stopGame(): void {
+    this.timer.stop();
+  }
+
   public updateGameTime(time: number): void {
     if (this.state.status !== Status.PROGRESS) {
       return;

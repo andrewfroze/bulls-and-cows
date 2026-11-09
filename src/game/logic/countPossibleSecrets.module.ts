@@ -2,6 +2,11 @@ import { memo } from '../../utils/memo';
 import { BaseConfig } from '../base.module';
 import type { Base, BaseObject } from '../types.module';
 
+const memoizedCount = memo((length: number, base: number): number => {
+  if (base === 0 || length === 0) return 1;
+  return base * memoizedCount(length - 1, base - 1);
+});
+
 export function countPossibleSecrets(length: number, base: Base): number {
   const baseConfig: BaseObject = BaseConfig[base];
 
@@ -13,13 +18,5 @@ export function countPossibleSecrets(length: number, base: Base): number {
     throw new Error('Length cannot exceed base');
   }
 
-  const count = memo((length: number, base: number): number => {
-    if (base === 0 || length === 0) {
-      return 1;
-    }
-
-    return base * count(length - 1, base - 1);
-  });
-
-  return count(length, baseConfig.maxLength);
+  return memoizedCount(length, baseConfig.maxLength);
 }

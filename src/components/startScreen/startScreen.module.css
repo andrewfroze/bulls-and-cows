@@ -199,6 +199,7 @@ footer.start-screen-footer {
   gap: var(--spacing-small);
   height: 50px;
   padding: var(--spacing-small);
+  justify-content: center;
 }
 
 footer.start-screen-footer a {

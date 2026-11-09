@@ -60,6 +60,11 @@
   overflow: hidden;
 }
 
+html {
+  display: flex;
+  justify-content: center;
+}
+
 body {
   margin: 0;
   min-width: 320px;

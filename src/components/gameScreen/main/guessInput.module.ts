@@ -1,6 +1,7 @@
 import { createElement } from '../../utils/elementFactory';
 import { createDigitValidator, isValidGuess, type Base } from '../../../game';
 import styles from '../gameScreen.module.css';
+import { playError } from '../../../sound';
 
 interface GuessInputOptions {
   base: Base;
@@ -52,12 +53,14 @@ export function createGuessForm(options: GuessInputOptions): HTMLFormElement {
     if (!isValidGuess(guess, options.length, options.base)) {
       input.setCustomValidity('Invalid input');
       input.reportValidity();
+      playError();
       return;
     }
 
     if (options.isHasDuplicates(guess)) {
       input.setCustomValidity('Already tried');
       input.reportValidity();
+      playError();
       return;
     }
 

@@ -1,6 +1,7 @@
 import { createElement } from '../../utils/elementFactory';
 import { BaseConfig, type Base } from '../../../game';
 import styles from '../gameScreen.module.css';
+import { playError } from '../../../sound';
 
 export function createAvailableChars(
   base: Base,
@@ -37,12 +38,14 @@ function appendDigit(input: HTMLInputElement, char: string, length: number): voi
   if (input.value.length >= length) {
     input.setCustomValidity(`Maximum ${length} digits allowed`);
     input.reportValidity();
+    playError();
     return;
   }
 
   if (input.value.includes(normalizedChar)) {
     input.setCustomValidity(`Character '${normalizedChar}' is already entered`);
     input.reportValidity();
+    playError();
     return;
   }
 

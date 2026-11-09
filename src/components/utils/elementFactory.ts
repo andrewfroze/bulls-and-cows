@@ -1,3 +1,5 @@
+import { playButton } from '../../sound';
+
 type CustomAttributes = {
   'data-tooltip'?: string;
 };
@@ -18,6 +20,10 @@ export function createElement<K extends keyof HTMLElementTagNameMap>(
   }
 
   element.append(...children);
+
+  if (tagName === 'button' || tagName === 'select' || tagName === 'option') {
+    element.addEventListener('click', playButton);
+  }
 
   return element;
 }

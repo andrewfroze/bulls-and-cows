@@ -4,6 +4,8 @@ const BPM = 112;
 const BEAT = 60 / BPM;
 const STEP = BEAT / 4;
 
+const MASTER_VOLUME = 0.5;
+
 const melody: (number | null)[][] = [
   [
     440,
@@ -105,12 +107,14 @@ function playTone(
   const oscillator = context.createOscillator();
   const gain = context.createGain();
 
+  const adjustedVolume = volume * MASTER_VOLUME;
+
   oscillator.type = type;
   oscillator.frequency.setValueAtTime(frequency, startTime);
 
   gain.gain.setValueAtTime(0.0001, startTime);
-  gain.gain.linearRampToValueAtTime(volume, startTime + 0.01);
-  gain.gain.setValueAtTime(volume, startTime + duration * 0.75);
+  gain.gain.linearRampToValueAtTime(adjustedVolume, startTime + 0.01);
+  gain.gain.setValueAtTime(adjustedVolume, startTime + duration * 0.75);
   gain.gain.exponentialRampToValueAtTime(0.0001, startTime + duration);
 
   oscillator.connect(gain);
@@ -128,7 +132,7 @@ function playKick(context: AudioContext, time: number): void {
   oscillator.frequency.setValueAtTime(130, time);
   oscillator.frequency.exponentialRampToValueAtTime(35, time + 0.13);
 
-  gain.gain.setValueAtTime(0.25, time);
+  gain.gain.setValueAtTime(0.25 * MASTER_VOLUME, time);
   gain.gain.exponentialRampToValueAtTime(0.001, time + 0.15);
 
   oscillator.connect(gain);
@@ -156,7 +160,7 @@ function playNoise(context: AudioContext, time: number, duration: number, volume
   filter.type = 'highpass';
   filter.frequency.value = 5000;
 
-  gain.gain.setValueAtTime(volume, time);
+  gain.gain.setValueAtTime(volume * MASTER_VOLUME, time);
   gain.gain.exponentialRampToValueAtTime(0.001, time + duration);
 
   source.connect(filter);

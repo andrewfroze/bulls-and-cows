@@ -19,6 +19,7 @@ export function createAttemptRow(turn: Turn, index: number): HTMLElement {
     'div',
     {
       className: styles['attempt-bulls'],
+      'data-tooltip': `Numbers found in correct position: ${turn.result.bulls}`,
     },
     [
       createElement('img', {
@@ -36,6 +37,7 @@ export function createAttemptRow(turn: Turn, index: number): HTMLElement {
     'div',
     {
       className: styles['attempt-cows'],
+      'data-tooltip': `Numbers found in wrong position: ${turn.result.cows}`,
     },
     [
       createElement('img', {

@@ -3,14 +3,14 @@ import { BaseConfig, defaultBase, defaultLength, Base, countPossibleSecrets } fr
 import styles from '../startScreen.module.css';
 
 export interface SettingsControls {
-  baseDropdown: HTMLSelectElement;
-  secretLengthDropdown: HTMLSelectElement;
+  baseDropdownWrapper: HTMLElement;
+  secretLengthDropdownWrapper: HTMLElement;
   combinationsInfo: HTMLParagraphElement;
 }
 
 export function createSettingsControls(): SettingsControls {
-  const baseDropdown = createBaseDropdown();
-  const secretLengthDropdown = createSecretLengthDropdown();
+  const [baseDropdown, baseDropdownWrapper] = createBaseDropdown();
+  const [secretLengthDropdown, secretLengthDropdownWrapper] = createSecretLengthDropdown();
   const combinationsInfo = createCombinationsInfo();
 
   updateSelectLengthDropdownOptions(secretLengthDropdown, defaultBase);
@@ -26,18 +26,17 @@ export function createSettingsControls(): SettingsControls {
   });
 
   return {
-    baseDropdown,
-    secretLengthDropdown,
+    baseDropdownWrapper,
+    secretLengthDropdownWrapper,
     combinationsInfo,
   };
 }
 
-function createBaseDropdown(base: Base = defaultBase): HTMLSelectElement {
+function createBaseDropdown(base: Base = defaultBase): [HTMLSelectElement, HTMLElement] {
   const options = Object.entries(BaseConfig).map(([base, baseObject]) =>
     createElement('option', {
-      className: styles['game-settings__base-dropdown__option'],
       value: base,
-      textContent: baseObject.label,
+      textContent: `${baseObject.label} (${baseObject.maxLength})`,
     }),
   );
 
@@ -52,14 +51,34 @@ function createBaseDropdown(base: Base = defaultBase): HTMLSelectElement {
 
   dropdown.value = base;
 
-  return dropdown;
+  const dropdownWrapper = createElement(
+    'div',
+    {
+      className: styles['game-settings__dropdown-wrapper'],
+      'data-tooltip': 'Select the secret number base system',
+    },
+    [dropdown],
+  );
+
+  return [dropdown, dropdownWrapper];
 }
 
-function createSecretLengthDropdown(): HTMLSelectElement {
-  return createElement('select', {
+function createSecretLengthDropdown(): [HTMLSelectElement, HTMLElement] {
+  const dropdown = createElement('select', {
     className: styles['game-settings__length-dropdown'],
     name: 'length',
   });
+
+  const dropdownWrapper = createElement(
+    'div',
+    {
+      className: styles['game-settings__dropdown-wrapper'],
+      'data-tooltip': 'Select the secret number length',
+    },
+    [dropdown],
+  );
+
+  return [dropdown, dropdownWrapper];
 }
 
 function createCombinationsInfo(): HTMLParagraphElement {

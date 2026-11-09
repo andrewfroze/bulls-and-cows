@@ -67,6 +67,15 @@ select.game-settings__base-dropdown {
   transition: var(--transition-normal);
 }
 
+.game-settings__dropdown-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.game-settings__dropdown-wrapper select {
+  width: 100%;
+}
+
 select.game-settings__length-dropdown:hover:not(:disabled),
 select.game-settings__base-dropdown:hover:not(:disabled) {
   border-color: var(--color-accent);

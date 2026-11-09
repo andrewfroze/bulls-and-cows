@@ -17,7 +17,7 @@ export function renderMain(
     {
       className: styles['game-settings'],
     },
-    [settings.baseDropdown, settings.secretLengthDropdown, carousel.element],
+    [settings.baseDropdownWrapper, settings.secretLengthDropdownWrapper, carousel.element],
   );
 
   form.addEventListener('submit', (event: SubmitEvent) => {

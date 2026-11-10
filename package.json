@@ -46,11 +46,11 @@
     "vite": "^8.3.5"
   },
   "lint-staged": {
-    "*.{js, ts, cjs}": [
+    "*.{js,ts,cjs}": [
       "eslint",
       "prettier --check"
     ],
-    "*.{md, html, css, json}": [
+    "*.{md,html,css,json}": [
       "prettier --check"
     ]
   }
